@@ -1,0 +1,37 @@
+{
+  "name": "pulley.js",
+  "version": "0.0.1",
+  "description": "A utility plugin for pulling instead of scrolling with the mouse on desktop ",
+  "main": "dist/pulley.min.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yowainwright/pulley.js.git"
+  },
+  "keywords": [
+    "pulley",
+    "mousedrag",
+    "mouse",
+    "pull",
+    "scroll",
+    "scrolling",
+    "mousescroll"
+  ],
+  "author": "Jeff Wainwright <yowainwright@gmail.com> (https://jeffry.in)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yowainwright/pulley.js/issues"
+  },
+  "homepage": "https://github.com/yowainwright/pulley.js#readme",
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "babel-jest": "^22.4.1",
+    "debug": "^3.1.0",
+    "eslint": "^4.18.1",
+    "eslint-config-dollarshaveclub": "^3.0.5",
+    "jest": "^22.4.2"
+  }
+}
