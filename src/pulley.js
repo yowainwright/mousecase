@@ -3,14 +3,14 @@ import debug from 'debug'
 // debugging messages
 // cuz you gotta know
 const pulleyjs = 'pulley.s--👌:'
-const r = debug(`${pulleyjs}check:rule`)
-const mgr = debug(`${pulleyjs}manage:msg:`)
+const logMsg = debug(`${pulleyjs}msg:`)
 
 // maybe this will be used below
-let log, startx, scrollLeft
-// d = isDown = mouse-is-down
-const d = false
+let el, log, startx, scrollLeft
+// d = isDown = the mouse is down
+const mouseIsDown = false
 
+// events
 export const evts = [
   'mousemove', 
   'mousedown', 
@@ -19,42 +19,81 @@ export const evts = [
   'mousemove',
 ]
 
-export const state = (d, el) => d ? 
-  el.classList.add('active') :
-  el.classList.remove('active')
+// PUlleyjs Class
+// uses a class to manage context
+export class Pulley {
 
-export const manage = (el) => {
-  switch (true) {
-    case 'mousedown':
-      d = true
-      setSliderState(d, el)
-      startx = pagex - el.offsetLeft
-      scrollLeft = el.scrollLeft
-      break
-    default:
-      d = false
-      setSliderState(d, el)
+  constructor(selector, props = {
+    rule: null,
+    log: false,
+    cssClass: 'js-pulley-is-active',
+  }) { 
+    this.selector = selector
+    this.props = {
+      rule,
+      log,
+      cssClass,
+    }
   }
-}
 
-export const setup = (el) => evts.map((e) => el.addEventListner(e, manage))
+  // takes in a rule, returns true or false
+  check() {
+    return this.props.rule ? true : false
+  }
 
-export const pull = (s) => {
-  const els = [].slice.call(document.querySelectorAll(s))
-  els.forEach((el) => evt(el))
-}
+  resolveSelector () {
+    return typeof this.selector !== 'undefined' ? 
+    true : 
+    (manmageLog('no selector') false)
+  }
 
-export const check = (rule) => rule
+  setup () {
+    const els = [].slice.call(document.querySelectorAll(this.selector))
+    els.forEach(el => evts.map(evt => el.addEventListner(evt, manageState)))
+  }
 
-export const pulley (s, opts = {
-  rule: null,
-  log: false,
-}) => { 
+  state (el) {
+    try {
+      return mouseIsDown ? 
+        el.classList.add(className) :
+        el.classList.remove(className)
+    } catch (err) {
+      return logMsg(err)
+    }
+  }
 
-  const {
-    rule,
-    log,
-  } = opts
+  manageState (el) {
 
-  return check(rule) ? log ? : r(rule): pull(s, log)
+    const {
+      className,
+      log,
+    } = this.props
+
+    switch (true) {
+      case 'mousedown':
+        mouseIsDown = true
+        state(el, className)
+        startx = pagex - el.offsetLeft
+        scrollLeft = el.scrollLeft
+        break
+      default:
+        mouseIsDown = false
+        state(el, className)
+    }
+  }
+
+  init () {
+    const {
+      log,
+      rule,
+    } = this.props
+
+    this.resolveSelector()
+    const logRule = () => log ? ruleLog(rule) : void
+    check(rule) ? 
+    logRule() : 
+    pull(this.selector, log)
+  }
+
+  this.init(this.selector, this.props)
 }
