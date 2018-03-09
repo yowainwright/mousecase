@@ -42,9 +42,8 @@ export class Pulley {
   }
 
   resolveSelector () {
-    return typeof this.selector !== 'undefined' ? 
-    true : 
-    (manmageLog('no selector') false)
+    const isDefined = typeof this.selector !== 'undefined'
+    return isDefined ? true : (manmageLog('no selector') false)
   }
 
   setup () {
@@ -63,7 +62,6 @@ export class Pulley {
   }
 
   manageState (el) {
-
     const {
       className,
       log,
@@ -90,9 +88,7 @@ export class Pulley {
 
     this.resolveSelector()
     const logRule = () => log ? ruleLog(rule) : void
-    check(rule) ? 
-    logRule() : 
-    pull(this.selector, log)
+    return check(rule) ? logRule() : pull(this.selector, log)
   }
 
   this.init(this.selector, this.props)
