@@ -56,33 +56,18 @@ const createConfig = ({ input, output, env } = {}) => {
 
 export default [
   createConfig({
-    input: 'src/stickybits.js',
+    input: 'src/index.js',
     output: [
       { file: pkg.main, format: 'cjs' },
       { file: pkg.module, format: 'es' },
     ],
   }),
   createConfig({
-    input: 'src/stickybits.js',
+    input: 'src/index.js',
     output: {
-      file: 'dist/stickybits.min.js',
+      file: 'dist/pulley.min.js',
       format: 'umd',
     },
     env: 'production',
-  }),
-  createConfig({
-    input: 'src/jquery.stickybits.js',
-    output: {
-      file: 'dist/jquery.stickybits.min.js',
-      format: 'umd',
-    },
-    env: 'production',
-  }),
-  createConfig({
-    input: 'src/umbrella.stickybits.js',
-    output: {
-      file: 'dist/umbrella.stickybits.js',
-      format: 'umd',
-    },
   }),
 ]

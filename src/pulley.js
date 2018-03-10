@@ -21,7 +21,7 @@ export const evts = [
 
 // PUlleyjs Class
 // uses a class to manage context
-export class Pulley {
+class Pulley {
 
   constructor(selector, props = {
     rule: null,
@@ -93,3 +93,5 @@ export class Pulley {
 
   this.init(this.selector, this.props)
 }
+
+export { Pulley }

@@ -1,11 +1,3 @@
-import {
-  evts,
-  state,
-  manage,
-  setup,
-  pull,
-  check,
-  pulley
-} from './pulley'
+import { Pulley } from './pulley'
 
-export default pulley
+export default Pulley
