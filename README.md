@@ -1,2 +1,7 @@
-# mousedrag
-A minimal JS plugin which enables horizontal dragging on mousedown events 🐁🖱
+# Pulley.js
+
+**Pulley.js** provides the most mouse support for touch-like horizontal scrolling. 
+
+## Work in progress
+
+Comeback soon. 
