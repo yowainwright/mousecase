@@ -1,3 +1,6 @@
 {
   "extends": "dollarshaveclub",
+  "globals": {
+    "test": true,
+  }
 }

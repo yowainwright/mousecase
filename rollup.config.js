@@ -3,12 +3,27 @@ import replace from 'rollup-plugin-replace'
 import uglify from 'rollup-plugin-uglify'
 import {
   author,
-  description
+  description,
   homepage,
   license,
+  main,
+  module,
   name,
-  version, 
-} from '../package.json'
+  version,
+} from './package.json'
+
+const uglifyOutput = {
+  output: {
+    comments: function (node, comment) {
+      const text = comment.value
+      const type = comment.type
+      if (type === 'comment2') {
+        // multiline comment
+        return /@preserve|@license|@cc_on/i.test(text)
+      }
+    },
+  },
+}
 
 // babel config
 const loose = true
@@ -28,12 +43,12 @@ const banner = `/**
   @license ${license}
 **/`
 
-const ensureArray = maybeArr => Array.isArray(maybeArr) ? maybeArr : [maybeArr]
+const ensureArray = maybeArr =>
+  Array.isArray(maybeArr) ? maybeArr : [maybeArr]
 
 const createConfig = ({ input, output, env } = {}) => {
   const plugins = [
     babel(babelSetup),
-    replace({ 'VERSION': JSON.stringify(version).replace(/"/g, '') }),
   ]
 
   if (env === 'production') plugins.push(uglify(uglifyOutput))
@@ -42,14 +57,10 @@ const createConfig = ({ input, output, env } = {}) => {
     input,
     plugins,
     output: ensureArray(output).map(format =>
-      Object.assign(
-        {},
-        format,
-        {
-          banner,
-          name,
-        }
-      )
+      Object.assign({}, format, {
+        banner,
+        name,
+      })
     ),
   }
 }
@@ -57,10 +68,7 @@ const createConfig = ({ input, output, env } = {}) => {
 export default [
   createConfig({
     input: 'src/index.js',
-    output: [
-      { file: pkg.main, format: 'cjs' },
-      { file: pkg.module, format: 'es' },
-    ],
+    output: [{ file: main, format: 'cjs' }, { file: module, format: 'es' }],
   }),
   createConfig({
     input: 'src/index.js',
