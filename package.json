@@ -1,10 +1,11 @@
 {
-  "name": "pulley.js",
+  "name": "mousecase",
   "version": "0.0.1",
-  "description": "A utility plugin for pulling instead of scrolling with the mouse on desktop ",
-  "main": "dist/pulley.js",
-  "module": "dist/pulley.es.js",
-  "unpkg": "dist/pulley.min.js",
+  "description":
+    "The computer mouse is not used much. Mouse Case is a utility to support no-mouse like horizontal scrolling with a mouse!",
+  "main": "dist/mousecase.js",
+  "module": "dist/mousecase.es.js",
+  "unpkg": "dist/mousecase.min.js",
   "scripts": {
     "build": "rollup --config rollup.config.js",
     "eslint": "eslint . --fix",
@@ -12,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yowainwright/pulley.js.git"
+    "url": "git+https://github.com/yowainwright/mousecase.git"
   },
   "keywords": [
     "pulley",
@@ -26,9 +27,9 @@
   "author": "Jeff Wainwright <yowainwright@gmail.com> (https://jeffry.in)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yowainwright/pulley.js/issues"
+    "url": "https://github.com/yowainwright/mousecase/issues"
   },
-  "homepage": "https://github.com/yowainwright/pulley.js#readme",
+  "homepage": "https://github.com/yowainwright/mousecase#readme",
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.42",
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.42",

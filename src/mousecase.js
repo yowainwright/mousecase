@@ -14,7 +14,7 @@ const logMsg = (msg = 'The is not more information 😭!') =>
 
 // PUlleyjs Class
 // uses a class to manage context
-class Pulley {
+class MouseCase {
   constructor (
     selector,
     state = {
@@ -127,4 +127,4 @@ class Pulley {
   }
 }
 
-export { Pulley }
+export { MouseCase }

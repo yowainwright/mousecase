@@ -1,3 +1,3 @@
-import { Pulley } from './pulley'
+import { MouseCase } from './mousecase'
 
-export default Pulley
+export default MouseCase
