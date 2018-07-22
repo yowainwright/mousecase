@@ -23,7 +23,7 @@ jobs:
     steps:
       - checkout
       - restore_cache: *restore_cache
-      - run: yarn
-      - run: yarn eslint:ci
-      - run: yarn test
+      - run: npm install
+      - run: npm run eslint:ci
+      - run: npm test
       - save_cache: *save_cache
