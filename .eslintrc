@@ -1,6 +1,14 @@
 {
   "extends": "dollarshaveclub",
   "globals": {
+    "afterAll": true,
+    "beforeAll": true,
+    "browser": true,
+    "describe": true,
+    "document": true,
+    "expect": true,
+    "jest": true,
     "test": true,
+    "window": true
   }
 }
