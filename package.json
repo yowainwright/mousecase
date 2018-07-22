@@ -8,6 +8,7 @@
   "scripts": {
     "build": "rollup --config rollup.config.js",
     "eslint": "eslint . --fix",
+    "eslint:ci": "eslint .",
     "test": "jest"
   },
   "repository": {
