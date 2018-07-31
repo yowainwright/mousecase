@@ -7,20 +7,14 @@
 **/
 'use strict';
 
-// events
-var events = ['mousemove', 'mousedown', 'mouseleave', 'mouseup', 'mousemove']; // messsages
-
-var pulleyjs = 'pulley.s--👌:';
-
-var logMsg = function logMsg(msg) {
-  if (msg === void 0) {
-    msg = 'The is not more information 😭!';
-  }
-
-  return console.warn(pulleyjs + "msg:" + msg);
-}; // PUlleyjs Class
-// uses a class to manage context
-
+/**
+ * events 🚩
+ */
+var events = ['mousemove', 'mousedown', 'mouseleave', 'mouseup', 'mousemove'];
+/**
+ * MouseCase  Class
+ * uses a class to manage context
+ */
 
 var MouseCase =
 /*#__PURE__*/
@@ -50,49 +44,45 @@ function () {
     this.props = props;
     this.init(this.selector, this.props);
   }
+  /**
+   * CHECK ✅
+   * ====
+   * - takes in a `rule` and returns true or false
+   * - exmaple of a `rule`:
+   * - window.location.href === 'https://jeffry.in'
+   * - or like, const isJeffryIn = window.location.href === 'https://jeffry.in'
+   */
+
 
   var _proto = MouseCase.prototype;
-
-  _proto.log = function log(msg) {
-    return this.props.debug ? logMsg(msg) : '';
-  };
-  /*
-    CHECK ✅
-    ====
-    - takes in a `rule` and returns true or false
-    - exmaple of a `rule`:
-    - window.location.href === 'https://jeffry.in'
-    - or like, const isJeffryIn = window.location.href === 'https://jeffry.in'
-  */
-
 
   _proto.check = function check() {
     return !!this.props.rule;
   };
-  /*
-    INIT 🌻
-    ====
-    - initialize dopeness
-    - checks that pulley.js is ready to rock
-    - rocks
-    - or, logs not rocking (if debug is true)
-  */
+  /**
+   * INIT 🌻
+   * ====
+   * - initialize dopeness
+   * - checks that pulley.js is ready to rock
+   * - rocks
+   * - or, logs not rocking (if debug is true)
+   */
 
 
   _proto.init = function init() {
-    var check = this.check();
     var selector = this.selector;
-    return check && selector ? this.pull(selector) : this.log("init:check:" + check + ",selector:" + selector);
+    if (!check() || !selector) return;
+    this.pull(selector);
   };
-  /*
-    MANAGESTATE 👩🏽‍🎨
-    ====
-    - update state
-    - based on
-      - if the mouse is down
-      - startx
-      - scrollLeft
-  */
+  /**
+   * MANAGESTATE 👩🏽‍🎨
+   * ====
+   * - update state
+   * - based on
+   * - if the mouse is down
+   * - startx
+   * - scrollLeft
+   */
 
 
   _proto.manageState = function manageState(item) {
@@ -118,11 +108,11 @@ function () {
     });
     return item;
   };
-  /*
-    ADDINSTANCE ➕
-    ====
-    - add anin
-  */
+  /**
+   * ADDINSTANCE ➕
+   * ====
+   * - add anin
+   */
 
 
   _proto.addInstance = function addInstance(el) {
@@ -136,11 +126,11 @@ function () {
     this.manageState(item);
     return item;
   };
-  /*
-    SETUP 👩🏽‍🍴
-    ====
-    - map elements to be worked on
-  */
+  /**
+   *  SETUP 👩🏽‍🍴
+   * ====
+   * - map elements to be worked on
+   */
 
 
   _proto.setup = function setup() {

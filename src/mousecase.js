@@ -1,4 +1,6 @@
-// events
+/**
+ * events 🚩
+ */
 export const events = [
   'mousemove',
   'mousedown',
@@ -7,13 +9,10 @@ export const events = [
   'mousemove',
 ]
 
-// messsages
-const pulleyjs = 'pulley.s--👌:'
-const logMsg = (msg = 'The is not more information 😭!') =>
-  console.warn(`${pulleyjs}msg:${msg}`)
-
-// PUlleyjs Class
-// uses a class to manage context
+/**
+ * MouseCase  Class
+ * uses a class to manage context
+ */
 class MouseCase {
   constructor (
     selector,
@@ -37,47 +36,41 @@ class MouseCase {
     this.init(this.selector, this.props)
   }
 
-  log (msg) {
-    return this.props.debug ? logMsg(msg) : ''
-  }
-
-  /*
-    CHECK ✅
-    ====
-    - takes in a `rule` and returns true or false
-    - exmaple of a `rule`:
-    - window.location.href === 'https://jeffry.in'
-    - or like, const isJeffryIn = window.location.href === 'https://jeffry.in'
-  */
+  /**
+   * CHECK ✅
+   * ====
+   * - takes in a `rule` and returns true or false
+   * - exmaple of a `rule`:
+   * - window.location.href === 'https://jeffry.in'
+   * - or like, const isJeffryIn = window.location.href === 'https://jeffry.in'
+   */
   check () {
     return !!this.props.rule
   }
 
-  /*
-    INIT 🌻
-    ====
-    - initialize dopeness
-    - checks that pulley.js is ready to rock
-    - rocks
-    - or, logs not rocking (if debug is true)
-  */
+  /**
+   * INIT 🌻
+   * ====
+   * - initialize dopeness
+   * - checks that pulley.js is ready to rock
+   * - rocks
+   * - or, logs not rocking (if debug is true)
+   */
   init () {
-    const check = this.check()
     const selector = this.selector
-    return check && selector
-      ? this.pull(selector)
-      : this.log(`init:check:${check},selector:${selector}`)
+    if (!check() || !selector) return
+    this.pull(selector)
   }
 
-  /*
-    MANAGESTATE 👩🏽‍🎨
-    ====
-    - update state
-    - based on
-      - if the mouse is down
-      - startx
-      - scrollLeft
-  */
+  /**
+   * MANAGESTATE 👩🏽‍🎨
+   * ====
+   * - update state
+   * - based on
+   * - if the mouse is down
+   * - startx
+   * - scrollLeft
+   */
   manageState (item) {
     const { el, props, state } = item
     const cssClass = props.cssClass
@@ -99,11 +92,11 @@ class MouseCase {
     return item
   }
 
-  /*
-    ADDINSTANCE ➕
-    ====
-    - add anin
-  */
+  /**
+   * ADDINSTANCE ➕
+   * ====
+   * - add anin
+   */
   addInstance (el) {
     const props = this.props
     const state = this.state
@@ -112,11 +105,11 @@ class MouseCase {
     return item
   }
 
-  /*
-    SETUP 👩🏽‍🍴
-    ====
-    - map elements to be worked on
-  */
+  /**
+   *  SETUP 👩🏽‍🍴
+   * ====
+   * - map elements to be worked on
+   */
   setup () {
     const els = [].slice.call(document.querySelectorAll(this.selector))
     this.instances = []
