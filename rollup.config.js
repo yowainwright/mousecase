@@ -72,7 +72,7 @@ export default [
   createConfig({
     input: 'src/index.js',
     output: {
-      file: 'dist/pulley.min.js',
+      file: 'dist/mousecase.min.js',
       format: 'umd',
     },
     env: 'production',
