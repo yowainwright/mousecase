@@ -58,7 +58,7 @@ class MouseCase {
    */
   init () {
     const selector = this.selector
-    if (!check() || !selector) return
+    if (!this.check() || !selector) return
     this.pull(selector)
   }
 
