@@ -1,6 +1,6 @@
-/**
- * events 🚩
- */
+
+export const debug = (msg) => console.log('%c MouseCase 🐹:', 'background-color: #FFB6C1; color: white', ` ${msg}`)
+
 export const events = [
   'mousemove',
   'mousedown',
@@ -8,115 +8,60 @@ export const events = [
   'mouseup',
   'mousemove',
 ]
-
-/**
- * MouseCase  Class
- * uses a class to manage context
- */
 class MouseCase {
   constructor (
-    selector,
-    state = {
-      mouseIsDown: false,
-      startx: null,
-      scrollLeft: null,
-    },
+    target,
     props = {
-      cssClass: 'js-pulley-is-active',
+      cssClass: 'js-mousecase',
       debug: false,
-      mouseIsDown: false,
       rule: null,
+    }
+  ) {
+    this.state = {
+      mouseIsDown: false,
       startx: null,
       scrollLeft: null,
     }
-  ) {
-    this.selector = selector
-    this.state = state
-    this.props = props
-    this.init(this.selector, this.props)
+    const els = typeof target === 'string' ? document.querySelectorAll(target) : target
+    if (!els) {
+      if (props.debug) debug('no target element is defined')
+      return
+    } else if ([...els].length !== 1) {
+      if (props.debug) debug('MouseCase does not support multiple items, see docs for work arounds')
+      return
+    } else if (!props.rule && props.rule === false) {
+      if (props.debug) debug(`${props.rule} boolean is false; MouseCase is not running`)
+      return
+    }
+    const el = els[0]
+    el.classList.add(`props.cssClass`)
+    this.props = { el, ...props }
+    this.manageMouseCaseState()
   }
 
   /**
-   * CHECK ✅
-   * ====
-   * - takes in a `rule` and returns true or false
-   * - exmaple of a `rule`:
-   * - window.location.href === 'https://jeffry.in'
-   * - or like, const isJeffryIn = window.location.href === 'https://jeffry.in'
+   * manageState 👩🏽‍🎨
+   * @returns this
    */
-  check () {
-    return !!this.props.rule
-  }
-
-  /**
-   * INIT 🌻
-   * ====
-   * - initialize dopeness
-   * - checks that pulley.js is ready to rock
-   * - rocks
-   * - or, logs not rocking (if debug is true)
-   */
-  init () {
-    const selector = this.selector
-    if (!this.check() || !selector) return
-    this.pull(selector)
-  }
-
-  /**
-   * MANAGESTATE 👩🏽‍🎨
-   * ====
-   * - update state
-   * - based on
-   * - if the mouse is down
-   * - startx
-   * - scrollLeft
-   */
-  manageState (item) {
-    const { el, props, state } = item
-    const cssClass = props.cssClass
-    events.map(event => {
-      el.addEventListner(event, () => {
-        switch (true) {
-          case event === 'mousedown':
-            state.mouseIsDown = true
-            el.classList.add(cssClass)
-            state.startx = state.pagex - el.offsetLeft
-            state.scrollLeft = el.scrollLeft
-            break
-          default:
-            state.mouseIsDown = false
-            el.classList.remove(cssClass)
+  manageMouseCaseState () {
+    const { cssClass, debug, el } = this.props
+    const mouseCaseIsActiveCssClass = `${cssClass}--is-active`
+    events.map(e => {
+      el.addEventListener(e, function mouseCaseEvent () {
+        if (debug) debug(`${e} is invoked`)
+        if (e === 'mousedown') {
+          this.state.mouseIsDown = true
+          el.classList.add(mouseCaseIsActiveCssClass)
+          this.state.startx = this.state.startx - el.offsetLeft
+          this.state.scrollLeft = el.scrollLeft
+        } else {
+          this.state.mouseIsDown = false
+          el.classList.remove(mouseCaseIsActiveCssClass)
         }
       })
     })
-    return item
-  }
-
-  /**
-   * ADDINSTANCE ➕
-   * ====
-   * - add anin
-   */
-  addInstance (el) {
-    const props = this.props
-    const state = this.state
-    const item = { el, props, state }
-    this.manageState(item)
-    return item
-  }
-
-  /**
-   *  SETUP 👩🏽‍🍴
-   * ====
-   * - map elements to be worked on
-   */
-  setup () {
-    const els = [].slice.call(document.querySelectorAll(this.selector))
-    this.instances = []
-    els.forEach(el => {
-      const instance = this.addIstance(el)
-      this.instances.push(instance)
-    })
+    if (debug) debug(`exciting manageMouseCaseState; state: ${this.state}, props: ${this.props}`)
+    return this
   }
 }
 

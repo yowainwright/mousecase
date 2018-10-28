@@ -5,142 +5,97 @@
   @author Jeff Wainwright <yowainwright@gmail.com> (https://jeffry.in)
   @license MIT
 **/
-/**
- * events 🚩
- */
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+var debug = function debug(msg) {
+  return console.log('%c MouseCase 🐹:', 'background-color: #FFB6C1; color: white', " " + msg);
+};
 var events = ['mousemove', 'mousedown', 'mouseleave', 'mouseup', 'mousemove'];
-/**
- * MouseCase  Class
- * uses a class to manage context
- */
 
 var MouseCase =
 /*#__PURE__*/
 function () {
-  function MouseCase(selector, state, props) {
-    if (state === void 0) {
-      state = {
-        mouseIsDown: false,
-        startx: null,
-        scrollLeft: null
-      };
-    }
-
+  function MouseCase(target, props) {
     if (props === void 0) {
       props = {
-        cssClass: 'js-pulley-is-active',
+        cssClass: 'js-mousecase',
         debug: false,
-        mouseIsDown: false,
-        rule: null,
-        startx: null,
-        scrollLeft: null
+        rule: null
       };
     }
 
-    this.selector = selector;
-    this.state = state;
-    this.props = props;
-    this.init(this.selector, this.props);
+    this.state = {
+      mouseIsDown: false,
+      startx: null,
+      scrollLeft: null
+    };
+    var els = typeof target === 'string' ? document.querySelectorAll(target) : target;
+
+    if (!els) {
+      if (props.debug) debug('no target element is defined');
+      return;
+    } else if (els.concat().length !== 1) {
+      if (props.debug) debug('MouseCase does not support multiple items, see docs for work arounds');
+      return;
+    } else if (!props.rule && props.rule === false) {
+      if (props.debug) debug(props.rule + " boolean is false; MouseCase is not running");
+      return;
+    }
+
+    var el = els[0];
+    el.classList.add("props.cssClass");
+    this.props = _extends({
+      el: el
+    }, props);
+    this.manageMouseCaseState();
   }
   /**
-   * CHECK ✅
-   * ====
-   * - takes in a `rule` and returns true or false
-   * - exmaple of a `rule`:
-   * - window.location.href === 'https://jeffry.in'
-   * - or like, const isJeffryIn = window.location.href === 'https://jeffry.in'
+   * manageState 👩🏽‍🎨
+   * @returns this
    */
 
 
   var _proto = MouseCase.prototype;
 
-  _proto.check = function check() {
-    return !!this.props.rule;
-  };
-  /**
-   * INIT 🌻
-   * ====
-   * - initialize dopeness
-   * - checks that pulley.js is ready to rock
-   * - rocks
-   * - or, logs not rocking (if debug is true)
-   */
+  _proto.manageMouseCaseState = function manageMouseCaseState() {
+    var _this$props = this.props,
+        cssClass = _this$props.cssClass,
+        debug = _this$props.debug,
+        el = _this$props.el;
+    var mouseCaseIsActiveCssClass = cssClass + "--is-active";
+    events.map(function (e) {
+      el.addEventListener(e, function mouseCaseEvent() {
+        if (debug) debug(e + " is invoked");
 
-
-  _proto.init = function init() {
-    var selector = this.selector;
-    if (!this.check() || !selector) return;
-    this.pull(selector);
-  };
-  /**
-   * MANAGESTATE 👩🏽‍🎨
-   * ====
-   * - update state
-   * - based on
-   * - if the mouse is down
-   * - startx
-   * - scrollLeft
-   */
-
-
-  _proto.manageState = function manageState(item) {
-    var el = item.el,
-        props = item.props,
-        state = item.state;
-    var cssClass = props.cssClass;
-    events.map(function (event) {
-      el.addEventListner(event, function () {
-        switch (true) {
-          case event === 'mousedown':
-            state.mouseIsDown = true;
-            el.classList.add(cssClass);
-            state.startx = state.pagex - el.offsetLeft;
-            state.scrollLeft = el.scrollLeft;
-            break;
-
-          default:
-            state.mouseIsDown = false;
-            el.classList.remove(cssClass);
+        if (e === 'mousedown') {
+          this.state.mouseIsDown = true;
+          el.classList.add(mouseCaseIsActiveCssClass);
+          this.state.startx = this.state.startx - el.offsetLeft;
+          this.state.scrollLeft = el.scrollLeft;
+        } else {
+          this.state.mouseIsDown = false;
+          el.classList.remove(mouseCaseIsActiveCssClass);
         }
       });
     });
-    return item;
-  };
-  /**
-   * ADDINSTANCE ➕
-   * ====
-   * - add anin
-   */
-
-
-  _proto.addInstance = function addInstance(el) {
-    var props = this.props;
-    var state = this.state;
-    var item = {
-      el: el,
-      props: props,
-      state: state
-    };
-    this.manageState(item);
-    return item;
-  };
-  /**
-   *  SETUP 👩🏽‍🍴
-   * ====
-   * - map elements to be worked on
-   */
-
-
-  _proto.setup = function setup() {
-    var _this = this;
-
-    var els = [].slice.call(document.querySelectorAll(this.selector));
-    this.instances = [];
-    els.forEach(function (el) {
-      var instance = _this.addIstance(el);
-
-      _this.instances.push(instance);
-    });
+    if (debug) debug("exciting manageMouseCaseState; state: " + this.state + ", props: " + this.props);
+    return this;
   };
 
   return MouseCase;
