@@ -67,7 +67,7 @@ const createConfig = ({ input, output, env } = {}) => {
 export default [
   createConfig({
     input: 'src/index.js',
-    output: [{ file: main, format: 'cjs' }, { file: module, format: 'es' }],
+    output: [{ file: main, format: 'umd' }, { file: module, format: 'es' }],
   }),
   createConfig({
     input: 'src/index.js',
