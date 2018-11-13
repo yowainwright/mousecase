@@ -1,5 +1,5 @@
 
-export const debug = (msg) => console.log('%c MouseCase 🐹:', 'background-color: #FFB6C1; color: white', ` ${msg}`)
+export const debug = (msg) => console.warn('%c MouseCase 🐹:', 'background-color: #FFB6C1; color: white', ` ${msg}`)
 
 export const events = [
   'mousemove',
