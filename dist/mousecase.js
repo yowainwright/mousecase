@@ -30,7 +30,7 @@
   }
 
   var debug = function debug(msg) {
-    return console.log('%c MouseCase 🐹:', 'background-color: #FFB6C1; color: white', " " + msg);
+    return console.warn('%c MouseCase 🐹:', 'background-color: #FFB6C1; color: white', " " + msg);
   };
   var events = ['mousemove', 'mousedown', 'mouseleave', 'mouseup', 'mousemove'];
 
@@ -51,12 +51,12 @@
         startx: null,
         scrollLeft: null
       };
-      var els = typeof target === 'string' ? document.querySelectorAll(target) : target;
+      var el = typeof target === 'string' ? document.querySelector(target) : target;
 
-      if (!els) {
+      if (!el) {
         if (props.debug) debug('no target element is defined');
         return;
-      } else if (els.concat().length !== 1) {
+      } else if (document.querySelectorAll(target).length > 1) {
         if (props.debug) debug('MouseCase does not support multiple items, see docs for work arounds');
         return;
       } else if (!props.rule && props.rule === false) {
@@ -64,12 +64,12 @@
         return;
       }
 
-      var el = els[0];
-      el.classList.add("props.cssClass");
       this.props = _extends({
         el: el
       }, props);
+      this.props.el.classList.add("props.cssClass");
       this.manageMouseCaseState();
+      return this;
     }
     /**
      * manageState 👩🏽‍🎨
@@ -80,27 +80,26 @@
     var _proto = MouseCase.prototype;
 
     _proto.manageMouseCaseState = function manageMouseCaseState() {
+      var _this = this;
+
       var _this$props = this.props,
           cssClass = _this$props.cssClass,
-          debug = _this$props.debug,
           el = _this$props.el;
       var mouseCaseIsActiveCssClass = cssClass + "--is-active";
       events.map(function (e) {
-        el.addEventListener(e, function mouseCaseEvent() {
-          if (debug) debug(e + " is invoked");
+        el.addEventListener(e, function () {
+          if (_this.props.debug) debug(e + " is invoked");
 
           if (e === 'mousedown') {
-            this.state.mouseIsDown = true;
             el.classList.add(mouseCaseIsActiveCssClass);
-            this.state.startx = this.state.startx - el.offsetLeft;
-            this.state.scrollLeft = el.scrollLeft;
+            _this.state.startx = _this.state.startx - el.offsetLeft;
+            _this.state.scrollLeft = el.scrollLeft;
           } else {
-            this.state.mouseIsDown = false;
             el.classList.remove(mouseCaseIsActiveCssClass);
           }
         });
       });
-      if (debug) debug("exciting manageMouseCaseState; state: " + this.state + ", props: " + this.props);
+      if (this.props.debug) debug("exciting manageMouseCaseState; state: " + this.state + ", props: " + this.props);
       return this;
     };
 

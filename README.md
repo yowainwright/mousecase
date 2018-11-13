@@ -1,6 +1,6 @@
 # Mousecase
 
-**Mousecase** provides the most mouse support for touch-like horizontal scrolling.
+**Mousecase** provides the mouse support for touch or trackpad-like horizontal scrolling.
 
 ## Work in progress
 
