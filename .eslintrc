@@ -7,6 +7,7 @@
     "describe": true,
     "document": true,
     "expect": true,
+    "it": true,
     "jest": true,
     "test": true,
     "window": true
