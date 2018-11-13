@@ -14,7 +14,7 @@ import {
 
 const uglifyOutput = {
   output: {
-    comments: function (node, comment) {
+    comments: function comments (node, comment) {
       const text = comment.value
       const type = comment.type
       if (type === 'comment2') {
