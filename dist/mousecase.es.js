@@ -24,7 +24,7 @@ function _extends() {
 }
 
 var debug = function debug(msg) {
-  return console.log('%c MouseCase 🐹:', 'background-color: #FFB6C1; color: white', " " + msg);
+  return console.warn('%c MouseCase 🐹:', 'background-color: #FFB6C1; color: white', " " + msg);
 };
 var events = ['mousemove', 'mousedown', 'mouseleave', 'mouseup', 'mousemove'];
 
