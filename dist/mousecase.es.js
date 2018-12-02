@@ -5,41 +5,20 @@
   @author Jeff Wainwright <yowainwright@gmail.com> (https://jeffry.in)
   @license MIT
 **/
-function _extends() {
-  _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
 var debug = function debug(msg) {
   return console.warn('%c MouseCase 🐹:', 'background-color: #FFB6C1; color: white', " " + msg);
 };
+
+var objectToString = function objectToString(o) {
+  return JSON.stringify(o);
+};
+
 var events = ['mousemove', 'mousedown', 'mouseleave', 'mouseup', 'mousemove'];
 
 var MouseCase =
 /*#__PURE__*/
 function () {
   function MouseCase(target, props) {
-    if (props === void 0) {
-      props = {
-        cssClass: 'js-mousecase',
-        debug: false,
-        rule: null
-      };
-    }
-
     this.state = {
       mouseIsDown: false,
       startx: null,
@@ -58,10 +37,13 @@ function () {
       return;
     }
 
-    this.props = _extends({
-      el: el
-    }, props);
-    this.props.el.classList.add("props.cssClass");
+    this.props = {
+      el: el,
+      debug: props.debug || false,
+      cssClass: props.cssClass || 'js-mousecase',
+      rule: props.rule || null
+    };
+    this.props.el.classList.add(this.props.cssClass);
     this.manageMouseCaseState();
     return this;
   }
@@ -82,8 +64,6 @@ function () {
     var mouseCaseIsActiveCssClass = cssClass + "--is-active";
     events.map(function (e) {
       el.addEventListener(e, function () {
-        if (_this.props.debug) debug(e + " is invoked");
-
         if (e === 'mousedown') {
           el.classList.add(mouseCaseIsActiveCssClass);
           _this.state.startx = _this.state.startx - el.offsetLeft;
@@ -91,9 +71,10 @@ function () {
         } else {
           el.classList.remove(mouseCaseIsActiveCssClass);
         }
+
+        if (_this.props.debug) debug(e + " is invoked; state: " + objectToString(_this.state) + ", props: " + objectToString(_this.props));
       });
     });
-    if (this.props.debug) debug("exciting manageMouseCaseState; state: " + this.state + ", props: " + this.props);
     return this;
   };
 
