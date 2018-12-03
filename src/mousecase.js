@@ -1,6 +1,8 @@
 
 export const debug = (msg) => console.warn('%c MouseCase 🐹:', 'background-color: #FFB6C1; color: white', ` ${msg}`)
 
+const objectToString = (o) => JSON.stringify(o)
+
 export const events = [
   'mousemove',
   'mousedown',
@@ -11,11 +13,7 @@ export const events = [
 class MouseCase {
   constructor (
     target,
-    props = {
-      cssClass: 'js-mousecase',
-      debug: false,
-      rule: null,
-    }
+    props,
   ) {
     this.state = {
       mouseIsDown: false,
@@ -33,8 +31,13 @@ class MouseCase {
       if (props.debug) debug(`${props.rule} boolean is false; MouseCase is not running`)
       return
     }
-    this.props = { el, ...props }
-    this.props.el.classList.add(`props.cssClass`)
+    this.props = {
+      el,
+      debug: props.debug || false,
+      cssClass: props.cssClass || 'js-mousecase',
+      rule: props.rule || null,
+    }
+    this.props.el.classList.add(this.props.cssClass)
     this.manageMouseCaseState()
     return this
   }
@@ -48,7 +51,6 @@ class MouseCase {
     const mouseCaseIsActiveCssClass = `${cssClass}--is-active`
     events.map(e => {
       el.addEventListener(e, () => {
-        if (this.props.debug) debug(`${e} is invoked`)
         if (e === 'mousedown') {
           el.classList.add(mouseCaseIsActiveCssClass)
           this.state.startx = this.state.startx - el.offsetLeft
@@ -56,9 +58,9 @@ class MouseCase {
         } else {
           el.classList.remove(mouseCaseIsActiveCssClass)
         }
+        if (this.props.debug) debug(`${e} is invoked; state: ${objectToString(this.state)}, props: ${objectToString(this.props)}`)
       })
     })
-    if (this.props.debug) debug(`exciting manageMouseCaseState; state: ${this.state}, props: ${this.props}`)
     return this
   }
 }
