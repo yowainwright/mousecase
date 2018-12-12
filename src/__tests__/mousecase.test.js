@@ -1,5 +1,4 @@
 import {
-  events,
   MouseCase,
 } from '../mousecase'
 
