@@ -5,25 +5,39 @@
   @author Jeff Wainwright <yowainwright@gmail.com> (https://jeffry.in)
   @license MIT
 **/
+/**
+ * debug
+ * @param {msg} string
+ * provides useful mousecase messaging
+ */
 var debug = function debug(msg) {
   return console.warn('%c MouseCase 🐹:', 'background-color: #FFB6C1; color: white', " " + msg);
 };
+/**
+ * objectToString
+ * @param {o} object
+ * turns object into string for easier debugging
+ */
 
 var objectToString = function objectToString(o) {
   return JSON.stringify(o);
 };
 
-var events = ['mousemove', 'mousedown', 'mouseleave', 'mouseup', 'mousemove'];
-
 var MouseCase =
 /*#__PURE__*/
 function () {
   function MouseCase(target, props) {
-    this.state = {
-      mouseIsDown: false,
-      startx: null,
-      scrollLeft: null
-    };
+    if (props === void 0) {
+      props = {
+        debug: false,
+        cssClass: 'js-mousecase',
+        rule: true
+      };
+    }
+
+    /**
+     * warnings
+     */
     var el = typeof target === 'string' ? document.querySelector(target) : target;
 
     if (!el) {
@@ -36,45 +50,85 @@ function () {
       if (props.debug) debug(props.rule + " boolean is false; MouseCase is not running");
       return;
     }
+    /**
+     * initial state
+     */
 
+
+    this.state = {
+      isDown: false,
+      startx: null,
+      scrollLeft: null
+      /**
+       * initial props
+       */
+
+    };
     this.props = {
+      activeClass: props.cssClass + "--is-active",
       el: el,
-      debug: props.debug || false,
-      cssClass: props.cssClass || 'js-mousecase',
-      rule: props.rule || null
+      debug: props.debug,
+      cssClass: props.cssClass,
+      rule: props.rule
     };
     this.props.el.classList.add(this.props.cssClass);
-    this.manageMouseCaseState();
+    if (this.props.rule) this.this.manageState();
     return this;
   }
   /**
-   * manageState 👩🏽‍🎨
-   * @returns this
-   */
+    * MouseDown
+    * @param {e} event
+    * what happens when the mouse is down
+    */
 
 
   var _proto = MouseCase.prototype;
 
-  _proto.manageMouseCaseState = function manageMouseCaseState() {
+  _proto.mouseDown = function mouseDown(e) {
+    var el = this.props.el;
+    el.classList.add('active');
+    this.state.isDown = true;
+    this.state.startX = e.pageX - el.offsetLeft;
+    this.state.scrollLeft = el.scrollLeft;
+    return this;
+  };
+  /**
+    * MouseMove
+    * @param {e} event
+    * what happens when the mouse moves
+    */
+
+
+  _proto.mouseMove = function mouseMove(e) {
+    if (!this.state.isDown) {
+      this.state.isDown = false;
+      return;
+    }
+
+    var el = this.props.el;
+    e.preventDefault();
+    var initial = e.pageX - el.offsetLeft;
+    var distance = (initial - this.state.startX) * 3;
+    el.scrollLeft = this.state.scrollLeft - distance;
+    return this;
+  };
+  /**
+    * ManageState
+    * manages mouseCase state
+    */
+
+
+  _proto.manageState = function manageState() {
     var _this = this;
 
-    var _this$props = this.props,
-        cssClass = _this$props.cssClass,
-        el = _this$props.el;
-    var mouseCaseIsActiveCssClass = cssClass + "--is-active";
-    events.map(function (e) {
-      el.addEventListener(e, function () {
-        if (e === 'mousedown') {
-          el.classList.add(mouseCaseIsActiveCssClass);
-          _this.state.startx = _this.state.startx - el.offsetLeft;
-          _this.state.scrollLeft = el.scrollLeft;
-        } else {
-          el.classList.remove(mouseCaseIsActiveCssClass);
-        }
-
-        if (_this.props.debug) debug(e + " is invoked; state: " + objectToString(_this.state) + ", props: " + objectToString(_this.props));
-      });
+    var el = this.props.el;
+    el.addEventListener('mousemove', function (e) {
+      return _this.mouseMove(e);
     });
+    el.addEventListener('mousedown', function (e) {
+      return _this.mouseDown(e);
+    });
+    if (this.props.debug) el.addEventListener('mouseup', debug("state: " + objectToString(this.state) + ", props: " + objectToString(this.props)));
     return this;
   };
 
