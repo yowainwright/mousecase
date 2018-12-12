@@ -57,6 +57,21 @@ class MouseCase {
   }
 
   /**
+    * MouseMove
+    * @param {e} event
+    * what happens when the mouse moves
+    */
+  mouseMove (e) {
+    if (!this.state.isDown) return this
+    const { el } = this.props
+    e.preventDefault()
+    const initial = e.pageX - el.offsetLeft
+    const distance = (initial - this.state.startX) * 3
+    el.scrollLeft = this.state.scrollLeft - distance
+    return this
+  }
+
+  /**
     * MouseDown
     * @param {e} event
     * what happens when the mouse is down
@@ -71,23 +86,13 @@ class MouseCase {
   }
 
   /**
-    * MouseMove
-    * @param {e} event
-    * what happens when the mouse moves
+    * MouseNotDown
+    * what happens when the mouse is NOT down
     */
-  mouseMove (e) {
-    if (!this.state.isDown) return
-    const { el } = this.props
-    e.preventDefault()
-    const initial = e.pageX - el.offsetLeft
-    const distance = (initial - this.state.startX) * 3
-    el.scrollLeft = this.state.scrollLeft - distance
-    return this
-  }
-
   mouseNotDown () {
     this.state.isDown = false
     if (this.props.debug) debug(`state: ${objectToString(this.state)}, props: ${objectToString(this.props)}`)
+    return this
   }
 
   /**
@@ -98,8 +103,8 @@ class MouseCase {
     const { el } = this.props
     el.addEventListener('mousemove', (e) => this.mouseMove(e))
     el.addEventListener('mousedown', (e) => this.mouseDown(e))
-    const notMouseCaseActiveEvts = ['mouseleave', 'mouseup']
-    notMouseCaseActiveEvts.map(e => el.addEventListener(e, (evt) => this.mouseNotDown(evt)))
+    const notMouseCaseActiveEvents = ['mouseleave', 'mouseup']
+    notMouseCaseActiveEvents.map(e => el.addEventListener(e, this.mouseNotDown))
     return this
   }
 }

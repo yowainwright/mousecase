@@ -1,6 +1,6 @@
 /**
   mousecase - The computer mouse is not used much. Mouse Case is a utility to support no-mouse like horizontal scrolling with a mouse!
-  @version v0.0.1
+  @version v0.0.4
   @link https://github.com/yowainwright/mousecase#readme
   @author Jeff Wainwright <yowainwright@gmail.com> (https://jeffry.in)
   @license MIT
@@ -78,13 +78,29 @@
       return this;
     }
     /**
+      * MouseMove
+      * @param {e} event
+      * what happens when the mouse moves
+      */
+
+
+    var _proto = MouseCase.prototype;
+
+    _proto.mouseMove = function mouseMove(e) {
+      if (!this.state.isDown) return this;
+      var el = this.props.el;
+      e.preventDefault();
+      var initial = e.pageX - el.offsetLeft;
+      var distance = (initial - this.state.startX) * 3;
+      el.scrollLeft = this.state.scrollLeft - distance;
+      return this;
+    };
+    /**
       * MouseDown
       * @param {e} event
       * what happens when the mouse is down
       */
 
-
-    var _proto = MouseCase.prototype;
 
     _proto.mouseDown = function mouseDown(e) {
       var el = this.props.el;
@@ -95,25 +111,15 @@
       return this;
     };
     /**
-      * MouseMove
-      * @param {e} event
-      * what happens when the mouse moves
+      * MouseNotDown
+      * what happens when the mouse is NOT down
       */
 
-
-    _proto.mouseMove = function mouseMove(e) {
-      if (!this.state.isDown) return;
-      var el = this.props.el;
-      e.preventDefault();
-      var initial = e.pageX - el.offsetLeft;
-      var distance = (initial - this.state.startX) * 3;
-      el.scrollLeft = this.state.scrollLeft - distance;
-      return this;
-    };
 
     _proto.mouseNotDown = function mouseNotDown() {
       this.state.isDown = false;
       if (this.props.debug) debug("state: " + objectToString(this.state) + ", props: " + objectToString(this.props));
+      return this;
     };
     /**
       * ManageState
@@ -131,11 +137,9 @@
       el.addEventListener('mousedown', function (e) {
         return _this.mouseDown(e);
       });
-      var notMouseCaseActiveEvts = ['mouseleave', 'mouseup'];
-      notMouseCaseActiveEvts.map(function (e) {
-        return el.addEventListener(e, function (evt) {
-          return _this.mouseNotDown(evt);
-        });
+      var notMouseCaseActiveEvents = ['mouseleave', 'mouseup'];
+      notMouseCaseActiveEvents.map(function (e) {
+        return el.addEventListener(e, _this.mouseNotDown);
       });
       return this;
     };
