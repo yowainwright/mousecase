@@ -15,11 +15,7 @@ export const objectToString = (o) => JSON.stringify(o)
 class MouseCase {
   constructor (
     target,
-    props = {
-      debug: false,
-      cssClass: 'js-mousecase',
-      rule: true,
-    }
+    props = {},
   ) {
     /**
      * warnings
@@ -49,14 +45,14 @@ class MouseCase {
      * initial props
      */
     this.props = {
-      activeClass: `${props.cssClass}--is-active`,
       el,
-      debug: props.debug,
-      cssClass: props.cssClass,
-      rule: props.rule,
+      debug: props.debug || false,
+      cssClass: props.cssClass || 'js-mousecase',
+      rule: props.rule || true,
     }
+    this.props.activeClass = `${this.props.cssClass}--is-active`
     this.props.el.classList.add(this.props.cssClass)
-    if (this.props.rule) this.this.manageState()
+    if (this.props.rule) this.manageState()
     return this
   }
 
@@ -80,16 +76,18 @@ class MouseCase {
     * what happens when the mouse moves
     */
   mouseMove (e) {
-    if (!this.state.isDown) {
-      this.state.isDown = false
-      return
-    }
+    if (!this.state.isDown) return
     const { el } = this.props
     e.preventDefault()
     const initial = e.pageX - el.offsetLeft
     const distance = (initial - this.state.startX) * 3
     el.scrollLeft = this.state.scrollLeft - distance
     return this
+  }
+
+  mouseNotDown () {
+    this.state.isDown = false
+    if (this.props.debug) debug(`state: ${objectToString(this.state)}, props: ${objectToString(this.props)}`)
   }
 
   /**
@@ -100,7 +98,8 @@ class MouseCase {
     const { el } = this.props
     el.addEventListener('mousemove', (e) => this.mouseMove(e))
     el.addEventListener('mousedown', (e) => this.mouseDown(e))
-    if (this.props.debug) el.addEventListener('mouseup', debug(`state: ${objectToString(this.state)}, props: ${objectToString(this.props)}`))
+    const notMouseCaseActiveEvts = ['mouseleave', 'mouseup']
+    notMouseCaseActiveEvts.map(e => el.addEventListener(e, (evt) => this.mouseNotDown(evt)))
     return this
   }
 }

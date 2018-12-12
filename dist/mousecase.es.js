@@ -28,11 +28,7 @@ var MouseCase =
 function () {
   function MouseCase(target, props) {
     if (props === void 0) {
-      props = {
-        debug: false,
-        cssClass: 'js-mousecase',
-        rule: true
-      };
+      props = {};
     }
 
     /**
@@ -65,14 +61,14 @@ function () {
 
     };
     this.props = {
-      activeClass: props.cssClass + "--is-active",
       el: el,
-      debug: props.debug,
-      cssClass: props.cssClass,
-      rule: props.rule
+      debug: props.debug || false,
+      cssClass: props.cssClass || 'js-mousecase',
+      rule: props.rule || true
     };
+    this.props.activeClass = this.props.cssClass + "--is-active";
     this.props.el.classList.add(this.props.cssClass);
-    if (this.props.rule) this.this.manageState();
+    if (this.props.rule) this.manageState();
     return this;
   }
   /**
@@ -100,17 +96,18 @@ function () {
 
 
   _proto.mouseMove = function mouseMove(e) {
-    if (!this.state.isDown) {
-      this.state.isDown = false;
-      return;
-    }
-
+    if (!this.state.isDown) return;
     var el = this.props.el;
     e.preventDefault();
     var initial = e.pageX - el.offsetLeft;
     var distance = (initial - this.state.startX) * 3;
     el.scrollLeft = this.state.scrollLeft - distance;
     return this;
+  };
+
+  _proto.mouseNotDown = function mouseNotDown() {
+    this.state.isDown = false;
+    if (this.props.debug) debug("state: " + objectToString(this.state) + ", props: " + objectToString(this.props));
   };
   /**
     * ManageState
@@ -128,7 +125,12 @@ function () {
     el.addEventListener('mousedown', function (e) {
       return _this.mouseDown(e);
     });
-    if (this.props.debug) el.addEventListener('mouseup', debug("state: " + objectToString(this.state) + ", props: " + objectToString(this.props)));
+    var notMouseCaseActiveEvts = ['mouseleave', 'mouseup'];
+    notMouseCaseActiveEvts.map(function (e) {
+      return el.addEventListener(e, function (evt) {
+        return _this.mouseNotDown(evt);
+      });
+    });
     return this;
   };
 
