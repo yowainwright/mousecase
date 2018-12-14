@@ -43,14 +43,20 @@ Das it! Are you happier now that your customer's scrollable horizontal web brows
 
 Listed below is the small API that mousecase provides to use it.
 
-- `**MouseCase**`
-  - **arguments**
-    - **target** an `string` or `node` that is selected to use mousecase
-      > **ex:** `new MouseCase('some-target')`
-    - **props:** `{object}` containing plugin config
-      > **ex:** `new MouseCase('some-target', { debug: true })`
-      - **debug:** `boolean`
-        > **ex:** `new MouseCase('some-target', { debug: true })`
+### MouseCase
+
+MouseCase itself is a class that takes in 2 arguments.
+
+#### `Arguments`
+
+**`target`** an `string` or `node` that is selected to use mousecase
+> **ex:** `new MouseCase('some-target')`
+
+**`props`:** `{object}` containing plugin config
+> **ex:** `new MouseCase('some-target', { debug: true })`
+
+- **debug:** `boolean`
+  > **ex:** `new MouseCase('some-target', { debug: true })`
 
 ## Demos
 
