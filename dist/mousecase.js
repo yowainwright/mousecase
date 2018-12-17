@@ -8,8 +8,8 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.MouseCase = factory());
-}(this, (function () { 'use strict';
+  global.MouseCase = factory();
+}(typeof self !== 'undefined' ? self : this, function () { 'use strict';
 
   /**
    * debug
@@ -28,6 +28,13 @@
   var objectToString = function objectToString(o) {
     return JSON.stringify(o);
   };
+  /**
+   * MouseCase
+   * @param {target} string ||  node
+   * @param {props} object
+   * @param {props.debug} boolean
+   * @param {props.cssClass} string
+   */
 
   var MouseCase =
   /*#__PURE__*/
@@ -68,8 +75,8 @@
       };
       this.props = {
         el: el,
-        debug: props.debug || false,
         cssClass: props.cssClass || 'js-mousecase',
+        debug: props.debug || false,
         rule: props.rule || true
       };
       this.props.activeClass = this.props.cssClass + "--is-active";
@@ -94,38 +101,38 @@
       var distance = (initial - this.state.startX) * 3;
       el.scrollLeft = this.state.scrollLeft - distance;
       return this;
-    };
+    }
     /**
       * MouseDown
       * @param {e} event
       * what happens when the mouse is down
       */
-
+    ;
 
     _proto.mouseDown = function mouseDown(e) {
       var el = this.props.el;
-      el.classList.add('active');
       this.state.isDown = true;
+      el.classList.add('active');
       this.state.startX = e.pageX - el.offsetLeft;
       this.state.scrollLeft = el.scrollLeft;
       return this;
-    };
+    }
     /**
       * MouseNotDown
       * what happens when the mouse is NOT down
       */
-
+    ;
 
     _proto.mouseNotDown = function mouseNotDown() {
       this.state.isDown = false;
       if (this.props.debug) debug("state: " + objectToString(this.state) + ", props: " + objectToString(this.props));
       return this;
-    };
+    }
     /**
       * ManageState
       * manages mouseCase state
       */
-
+    ;
 
     _proto.manageState = function manageState() {
       var _this = this;
@@ -135,7 +142,7 @@
         return _this.mouseMove(e);
       });
       el.addEventListener('mousedown', function (e) {
-        return _this.mouseDown(e);
+        _this.mouseDown(e);
       });
       var notMouseCaseActiveEvents = ['mouseleave', 'mouseup'];
       notMouseCaseActiveEvents.map(function (e) {
@@ -149,4 +156,4 @@
 
   return MouseCase;
 
-})));
+}));
