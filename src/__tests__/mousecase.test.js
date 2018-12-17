@@ -1,3 +1,5 @@
+// import { mouseCaseDom } from '../../utils/mock-data'
+
 import {
   MouseCase,
 } from '../mousecase'
@@ -8,11 +10,12 @@ describe('MouseCase init', () => {
     expect(typeof mousecase).toBe('object')
   })
 
-  // it('takes in props', () => {
-  //   const mousecase = new MouseCase('selector', { debug: true, rule: true })
-  //   expect(mousecase.props.debug).toBe(true)
-  //   expect(mousecase.props.rule).toBe(true)
-  // })
+  it('takes in props', () => {
+    document.body.innerHTML = '<div id="mouse-case"></div>'
+    const mouseCase = new MouseCase('#mouse-case', { debug: true })
+    expect(mouseCase.props.debug).toBe(true)
+    expect(mouseCase.props.rule).toBe(true)
+  })
 
   // it('mouseDown', () => { })
 
