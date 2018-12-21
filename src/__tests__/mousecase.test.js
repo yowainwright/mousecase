@@ -1,4 +1,4 @@
-// import { mouseCaseDom } from '../../utils/mock-data'
+import { mouseCaseDom } from '../../utils/mock-data'
 
 import {
   MouseCase,
@@ -11,13 +11,22 @@ describe('MouseCase init', () => {
   })
 
   it('takes in props', () => {
-    document.body.innerHTML = '<div id="mouse-case"></div>'
+    document.body.innerHTML = mouseCaseDom
     const mouseCase = new MouseCase('#mouse-case', { debug: true })
     expect(mouseCase.props.debug).toBe(true)
     expect(mouseCase.props.rule).toBe(true)
   })
 
-  // it('mouseDown', () => { })
+  it('mouseDown', () => {
+    document.body.innerHTML = mouseCaseDom
+    const mouseCase = new MouseCase('#mouse-case', { debug: true })
+    const e = new Event('mousedown')
+    const testEl = document.getElementById('mouse-case')
+    testEl.dispatchEvent(e)
+    testEl.addEventListener('mousedown', () => {
+      expect(mouseCase.state.isDown).toBe(true)
+    })
+  })
 
   // it('mouseMouse', () => { })
 
