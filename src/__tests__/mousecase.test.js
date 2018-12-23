@@ -28,9 +28,16 @@ describe('MouseCase init', () => {
     })
   })
 
-  // it('mouseMouse', () => { })
-
-  // it('works in non-activestate', () => { })
+  it('mouseMouse', () => {
+    document.body.innerHTML = mouseCaseDom
+    const mouseCase = new MouseCase('#mouse-case', { debug: true })
+    const e = new Event('mousedown')
+    const testEl = document.getElementById('mouse-case')
+    testEl.dispatchEvent(e)
+    testEl.addEventListener('mousemove', () => {
+      expect(mouseCase.state.isDown).toBe(false)
+    })
+  })
 })
 
 describe('MouseCase events', () => {})
