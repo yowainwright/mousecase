@@ -28,7 +28,7 @@ describe('MouseCase init', () => {
     })
   })
 
-  it('mouseMouse', () => {
+  it('mouseMove', () => {
     document.body.innerHTML = mouseCaseDom
     const mouseCase = new MouseCase('#mouse-case', { debug: true })
     const e = new Event('mousedown')
@@ -39,7 +39,3 @@ describe('MouseCase init', () => {
     })
   })
 })
-
-describe('MouseCase events', () => {})
-
-describe('MouseCase debug logs', () => {})
