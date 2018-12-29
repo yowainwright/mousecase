@@ -1,6 +1,6 @@
 /**
   mousecase - The computer mouse is not used much. Mouse Case is a utility to support no-mouse like horizontal scrolling with a mouse!
-  @version v0.0.4
+  @version v0.0.5
   @link https://github.com/yowainwright/mousecase#readme
   @author Jeff Wainwright <yowainwright@gmail.com> (https://jeffry.in)
   @license MIT
@@ -28,6 +28,7 @@ var objectToString = function objectToString(o) {
  * @param {props} object
  * @param {props.debug} boolean
  * @param {props.cssClass} string
+ * @param {props.rule} boolean
  */
 
 var MouseCase =

@@ -1,6 +1,6 @@
 /**
   mousecase - The computer mouse is not used much. Mouse Case is a utility to support no-mouse like horizontal scrolling with a mouse!
-  @version v0.0.4
+  @version v0.0.5
   @link https://github.com/yowainwright/mousecase#readme
   @author Jeff Wainwright <yowainwright@gmail.com> (https://jeffry.in)
   @license MIT
@@ -8,8 +8,8 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  global.MouseCase = factory();
-}(typeof self !== 'undefined' ? self : this, function () { 'use strict';
+  (global = global || self, global.MouseCase = factory());
+}(this, function () { 'use strict';
 
   /**
    * debug
@@ -34,6 +34,7 @@
    * @param {props} object
    * @param {props.debug} boolean
    * @param {props.cssClass} string
+   * @param {props.rule} boolean
    */
 
   var MouseCase =
