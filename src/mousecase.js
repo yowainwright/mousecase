@@ -18,6 +18,7 @@ export const objectToString = (o) => JSON.stringify(o)
  * @param {props} object
  * @param {props.debug} boolean
  * @param {props.cssClass} string
+ * @param {props.rule} boolean
  */
 class MouseCase {
   constructor (
