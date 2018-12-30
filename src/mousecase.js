@@ -86,6 +86,7 @@ class MouseCase {
     */
   mouseDown (e) {
     const { el } = this.props
+
     this.state.isDown = true
     el.classList.add('active')
     this.state.startX = e.pageX - el.offsetLeft

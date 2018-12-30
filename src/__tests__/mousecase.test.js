@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { mouseCaseDom } from '../../utils/mock-data'
 
 import {

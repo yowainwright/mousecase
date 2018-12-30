@@ -25,5 +25,5 @@ jobs:
       - restore_cache: *restore_cache
       - run: npm install
       - run: npm run eslint:ci
-      - run: npm test
+      - run: yarn test
       - save_cache: *save_cache
