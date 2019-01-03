@@ -1,0 +1,6 @@
+{
+  "globalSetup": "jest-environment-puppeteer/setup",
+  "globalTeardown": "jest-environment-puppeteer/teardown",
+  "preset": "jest-puppeteer",
+  "testEnvironment": "jest-environment-puppeteer"
+}

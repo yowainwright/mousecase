@@ -24,7 +24,7 @@
     "spelling": "mdspell '**/*.md' '!**/node_modules/**/*.md' --ignore-numbers",
     "spelling:ci": "mdspell '**/*.md' '!**/node_modules/**/*.md' --ignore-numbers --report",
     "start": "npm i",
-    "test": "jest"
+    "test": "jest --config jest.jsdom.json"
   },
   "repository": {
     "type": "git",
@@ -65,8 +65,5 @@
     "rollup-plugin-replace": "2.1.0",
     "rollup-plugin-uglify": "6.0.0",
     "write-good": "^0.13.1"
-  },
-  "jest": {
-    "testURL": "http://localhost"
   }
 }

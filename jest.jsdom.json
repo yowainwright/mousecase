@@ -1,0 +1,16 @@
+{
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx,ts,tsx}"
+  ],
+  "moduleFileExtensions": [
+    "js"
+  ],
+  "roots": [
+    "src"
+  ],
+  "testEnvironment": "jsdom",
+  "testMatch": [
+    "<rootDir>/**/__tests__/**/*.js"
+  ],
+  "testURL": "http://localhost"
+}
