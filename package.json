@@ -18,7 +18,7 @@
     "chore": "npm run chore:delete-changelog-branch && npm run chore:branch && npm run chore:changelog && npm run chore:pr && npm run chore:setup-next-work",
     "grammar": "write-good *.md --no-passive",
     "markdownlint": "markdownlint *.md",
-    "prepush": "npm run build && npm test",
+    "prepush": "npm run build && npm test && npm run eslint",
     "pre-commit-msg": "Echo 'Running pre-commit checks...' && exit 0",
     "postpublish": "git tag $npm_package_version && git push origin --tags && npm run chore",
     "spelling": "mdspell '**/*.md' '!**/node_modules/**/*.md' --ignore-numbers",
