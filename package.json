@@ -24,6 +24,7 @@
     "spelling": "mdspell '**/*.md' '!**/node_modules/**/*.md' --ignore-numbers",
     "spelling:ci": "mdspell '**/*.md' '!**/node_modules/**/*.md' --ignore-numbers --report",
     "start": "npm i",
+    "start:server": "node app.js",
     "test": "jest --config jest.jsdom.json"
   },
   "repository": {
