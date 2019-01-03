@@ -12,5 +12,8 @@
     "test": true,
     "window": true,
     "Event": true
+  },
+  "rules": {
+   "no-console": "off"
   }
 }
