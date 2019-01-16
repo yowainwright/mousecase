@@ -3,7 +3,7 @@
  * @param {msg} string
  * provides useful mousecase messaging
  */
-export const debug = (msg) => console.warn('%c MouseCase 🐹:', 'background-color: #FFB6C1; color: white', ` ${msg}`)
+export const debug = msg => console.warn('%c MouseCase 🐹:', 'background-color: #FFB6C1; color: white', ` ${msg}`)
 
 /**
  * objectToString
@@ -86,7 +86,6 @@ class MouseCase {
     */
   mouseDown (e) {
     const { el } = this.props
-
     this.state.isDown = true
     el.classList.add('active')
     this.state.startX = e.pageX - el.offsetLeft
@@ -100,7 +99,9 @@ class MouseCase {
     */
   mouseNotDown () {
     this.state.isDown = false
-    if (this.props.debug) debug(`state: ${objectToString(this.state)}, props: ${objectToString(this.props)}`)
+    if (this.props.debug) {
+      debug(`state: ${objectToString(this.state)}, props: ${objectToString(this.props)}`)
+    }
     return this
   }
 
@@ -111,9 +112,7 @@ class MouseCase {
   manageState () {
     const { el } = this.props
     el.addEventListener('mousemove', (e) => this.mouseMove(e))
-    el.addEventListener('mousedown', (e) => {
-      this.mouseDown(e)
-    })
+    el.addEventListener('mousedown', (e) => this.mouseDown(e))
     const notMouseCaseActiveEvents = ['mouseleave', 'mouseup']
     notMouseCaseActiveEvents.map(e => el.addEventListener(e, this.mouseNotDown))
     return this

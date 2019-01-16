@@ -1,6 +1,6 @@
 /**
  * mouseCaseDom
- * - a dom for testing mouseCase, etc
+ * - a dom for testing mouseCase, etc, etc
  */
 export const mouseCaseDom = `
   <main class="main">
