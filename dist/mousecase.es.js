@@ -120,7 +120,11 @@ function () {
 
   _proto.mouseNotDown = function mouseNotDown() {
     this.state.isDown = false;
-    if (this.props.debug) debug("state: " + objectToString(this.state) + ", props: " + objectToString(this.props));
+
+    if (this.props.debug) {
+      debug("state: " + objectToString(this.state) + ", props: " + objectToString(this.props));
+    }
+
     return this;
   }
   /**
@@ -137,7 +141,7 @@ function () {
       return _this.mouseMove(e);
     });
     el.addEventListener('mousedown', function (e) {
-      _this.mouseDown(e);
+      return _this.mouseDown(e);
     });
     var notMouseCaseActiveEvents = ['mouseleave', 'mouseup'];
     notMouseCaseActiveEvents.map(function (e) {
