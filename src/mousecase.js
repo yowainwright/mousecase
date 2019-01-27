@@ -25,9 +25,6 @@ class MouseCase {
     target,
     props = {},
   ) {
-    /**
-     * warnings
-     */
     const el = typeof target === 'string' ? document.querySelector(target) : target
     if (!el) {
       if (props.debug) debug('no target element is defined')
@@ -40,18 +37,12 @@ class MouseCase {
       return
     }
 
-    /**
-     * initial state
-     */
     this.state = {
       isDown: false,
       startx: null,
       scrollLeft: null,
     }
 
-    /**
-     * initial props
-     */
     this.props = {
       el,
       cssClass: props.cssClass || 'js-mousecase',
@@ -64,11 +55,6 @@ class MouseCase {
     return this
   }
 
-  /**
-    * MouseMove
-    * @param {e} event
-    * what happens when the mouse moves
-    */
   mouseMove (e) {
     if (!this.state.isDown) return this
     const { el } = this.props
@@ -79,11 +65,6 @@ class MouseCase {
     return this
   }
 
-  /**
-    * MouseDown
-    * @param {e} event
-    * what happens when the mouse is down
-    */
   mouseDown (e) {
     const { el } = this.props
     this.state.isDown = true
@@ -93,22 +74,14 @@ class MouseCase {
     return this
   }
 
-  /**
-    * MouseNotDown
-    * what happens when the mouse is NOT down
-    */
   mouseNotDown () {
-    this.state.isDown = false
-    if (this.props.debug) {
+    if (this.state) this.state.isDown = false
+    if (this.props && this.props.debug) {
       debug(`state: ${objectToString(this.state)}, props: ${objectToString(this.props)}`)
     }
     return this
   }
 
-  /**
-    * ManageState
-    * manages mouseCase state
-    */
   manageState () {
     const { el } = this.props
     el.addEventListener('mousemove', (e) => this.mouseMove(e))
