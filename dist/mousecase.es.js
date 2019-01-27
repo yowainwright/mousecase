@@ -1,6 +1,6 @@
 /**
   mousecase - The computer mouse is not used much. Mouse Case is a utility to support no-mouse like horizontal scrolling with a mouse!
-  @version v0.0.5
+  @version v0.0.6
   @link https://github.com/yowainwright/mousecase#readme
   @author Jeff Wainwright <yowainwright@gmail.com> (https://jeffry.in)
   @license MIT
@@ -39,9 +39,6 @@ function () {
       props = {};
     }
 
-    /**
-     * warnings
-     */
     var el = typeof target === 'string' ? document.querySelector(target) : target;
 
     if (!el) {
@@ -54,19 +51,11 @@ function () {
       if (props.debug) debug(props.rule + " boolean is false; MouseCase is not running");
       return;
     }
-    /**
-     * initial state
-     */
-
 
     this.state = {
       isDown: false,
       startx: null,
       scrollLeft: null
-      /**
-       * initial props
-       */
-
     };
     this.props = {
       el: el,
@@ -79,12 +68,6 @@ function () {
     if (this.props.rule) this.manageState();
     return this;
   }
-  /**
-    * MouseMove
-    * @param {e} event
-    * what happens when the mouse moves
-    */
-
 
   var _proto = MouseCase.prototype;
 
@@ -96,13 +79,7 @@ function () {
     var distance = (initial - this.state.startX) * 3;
     el.scrollLeft = this.state.scrollLeft - distance;
     return this;
-  }
-  /**
-    * MouseDown
-    * @param {e} event
-    * what happens when the mouse is down
-    */
-  ;
+  };
 
   _proto.mouseDown = function mouseDown(e) {
     var el = this.props.el;
@@ -111,27 +88,17 @@ function () {
     this.state.startX = e.pageX - el.offsetLeft;
     this.state.scrollLeft = el.scrollLeft;
     return this;
-  }
-  /**
-    * MouseNotDown
-    * what happens when the mouse is NOT down
-    */
-  ;
+  };
 
   _proto.mouseNotDown = function mouseNotDown() {
-    this.state.isDown = false;
+    if (this.state) this.state.isDown = false;
 
-    if (this.props.debug) {
+    if (this.props && this.props.debug) {
       debug("state: " + objectToString(this.state) + ", props: " + objectToString(this.props));
     }
 
     return this;
-  }
-  /**
-    * ManageState
-    * manages mouseCase state
-    */
-  ;
+  };
 
   _proto.manageState = function manageState() {
     var _this = this;
