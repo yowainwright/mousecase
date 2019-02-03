@@ -86,8 +86,8 @@ class MouseCase {
     const { el } = this.props
     el.addEventListener('mousemove', (e) => this.mouseMove(e))
     el.addEventListener('mousedown', (e) => this.mouseDown(e))
-    const notMouseCaseActiveEvents = ['mouseleave', 'mouseup']
-    notMouseCaseActiveEvents.map(e => el.addEventListener(e, this.mouseNotDown))
+    el.addEventListener('mouseleave', (e) => this.mouseNotDown(e))
+    el.addEventListener('mouseup', (e) => this.mouseNotDown(e))
     return this
   }
 }
