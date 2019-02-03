@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import { mouseCaseDom } from '../../utils/mock-data'
 
 import {
@@ -36,6 +32,17 @@ describe('MouseCase init', () => {
     document.body.innerHTML = mouseCaseDom
     const mouseCase = new MouseCase('#mouse-case', { debug: true })
     const e = new Event('mousedown')
+    const testEl = document.getElementById('mouse-case')
+    testEl.dispatchEvent(e)
+    testEl.addEventListener('mousemove', () => {
+      expect(mouseCase.state.isDown).toBe(false)
+    })
+  })
+
+  it('mouseup', () => {
+    document.body.innerHTML = mouseCaseDom
+    const mouseCase = new MouseCase('#mouse-case', { debug: true })
+    const e = new Event('mouseup')
     const testEl = document.getElementById('mouse-case')
     testEl.dispatchEvent(e)
     testEl.addEventListener('mousemove', () => {
