@@ -5,6 +5,8 @@ It is a no-nonsense, 0 dependency JavaScript plugin that solves this 1 use case:
 
 > Scrolling a horizontal browser window plain with a mouse **without** using a scrollbar.
 
+## Synopsis
+
 Beings able to scroll a horizontal browser window plain without a mouse is expected on phones and with trackpads by a user dragging with their fingers. Now with Mousecase, the archaic computer mouse can keep up! Yay. Users can click down on their computer mouse and drag scrollable horizontal browser window content without a scrollbar. This utility can help remove the need to implement a slider or carousel thingy. Therefore, it basically saves lives!
 Do you want to be saved? Great! Use Mousecase and become a happier engineer today. You can use it tomorrow too, probably.
 
