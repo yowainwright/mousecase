@@ -1,6 +1,6 @@
 /**
   mousecase - The computer mouse is not used much. Mouse Case is a utility to support no-mouse like horizontal scrolling with a mouse!
-  @version v0.0.7
+  @version v0.0.8
   @link https://github.com/yowainwright/mousecase#readme
   @author Jeff Wainwright <yowainwright@gmail.com> (https://jeffry.in)
   @license MIT
@@ -116,9 +116,11 @@
       el.addEventListener('mousedown', function (e) {
         return _this.mouseDown(e);
       });
-      var notMouseCaseActiveEvents = ['mouseleave', 'mouseup'];
-      notMouseCaseActiveEvents.map(function (e) {
-        return el.addEventListener(e, _this.mouseNotDown);
+      el.addEventListener('mouseleave', function (e) {
+        return _this.mouseNotDown(e);
+      });
+      el.addEventListener('mouseup', function (e) {
+        return _this.mouseNotDown(e);
       });
       return this;
     };
