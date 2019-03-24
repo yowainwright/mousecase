@@ -685,10 +685,10 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
-"@types/node@*":
-  version "10.12.18"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.18.tgz#1d3ca764718915584fcd9f6344621b7672665c67"
-  integrity sha512-fh+pAqt4xRzPfqA6eh3Z2y6fyZavRIumvjhaCL753+TVkGKGhpPeyrJG2JftD0T9q4GF00KjefsQ+PQNDdWQaQ==
+"@types/node@^11.9.5":
+  version "11.11.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.11.4.tgz#8808bd5a82bbf6f5d412eff1c228d178e7c24bb3"
+  integrity sha512-02tIL+QIi/RW4E5xILdoAMjeJ9kYq5t5S2vciUdFPXv/ikFTb0zK8q9vXkg4+WAJuYXGiVT1H28AkD2C+IkXVw==
 
 JSONStream@^1.0.4:
   version "1.3.5"
@@ -736,10 +736,15 @@ acorn@^6.0.1, acorn@^6.0.2:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.0.5.tgz#81730c0815f3f3b34d8efa95cb7430965f4d887a"
   integrity sha512-i33Zgp3XWtmZBMNvCr4azvOFeWVw1Rk6p3hfi3LUDvIFraOMywb1kAtrbi+med14m4Xfpqm3zRZMT+c0FNE7kg==
 
-acorn@^6.0.7, acorn@^6.1.0:
+acorn@^6.0.7:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.1.0.tgz#b0a3be31752c97a0f7013c5f4903b71a05db6818"
   integrity sha512-MW/FjM+IvU9CgBzjO3UIPCE2pyEwUsoFl+VGdczOPEdxfGFjuKny/gN54mOuX7Qxmb9Rg9MCn2oKiSUeW+pjrw==
+
+acorn@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.1.1.tgz#7d25ae05bb8ad1f9b699108e1094ecd7884adc1f"
+  integrity sha512-jPTiwtOxaHNaAPg/dmrJ/beuzLRnXtB0kQPQ8JpotKJgTB6rX6c8mlf315941pyjBSaPg8NHXS9fhP4u17DpGA==
 
 add-stream@^1.0.0:
   version "1.0.0"
@@ -5702,14 +5707,14 @@ rollup-pluginutils@^2.4.1:
     estree-walker "^0.6.0"
     micromatch "^3.1.10"
 
-rollup@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.2.0.tgz#4d487f542b16984955409585ff19585fe3cfd6cc"
-  integrity sha512-oHNv2NSX5y/rY6W8MuKW8BVQwpIfwfTNp4PJiQYR7cLcBYeR5wP0LsPqKNw3Heji6hYci5Nd53q/fVfTuNe3GA==
+rollup@1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.6.1.tgz#b1f2edc949d78186fb487597b28dd9717b8bc20f"
+  integrity sha512-2giWBZjBepr/25vkds/EzpC52xySDyhX1wPGaJ69cnZJHCuYTzIJKFzJB1DTZ8C7A1FocBbG0KhS/No3whXmzw==
   dependencies:
     "@types/estree" "0.0.39"
-    "@types/node" "*"
-    acorn "^6.1.0"
+    "@types/node" "^11.9.5"
+    acorn "^6.1.1"
 
 rsvp@^3.3.3:
   version "3.6.2"
