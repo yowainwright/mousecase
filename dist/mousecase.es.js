@@ -22,6 +22,20 @@ var debug = function debug(msg) {
 var objectToString = function objectToString(o) {
   return JSON.stringify(o);
 };
+var canUseMouseCase = function canUseMouseCase(target) {
+  if (!target) {
+    if (debug) debug('no target element is defined');
+    return false;
+  } else if (document.querySelectorAll(target).length > 1) {
+    if (debug) debug('MouseCase does not support multiple items, see docs for work arounds');
+    return false;
+  } else if (!rule && rule === false) {
+    if (props.debug) debug(props.rule + " boolean is false; MouseCase is not running");
+    return false;
+  } else {
+    return true;
+  }
+};
 /**
  * MouseCase
  * @param {target} string ||  node
@@ -36,32 +50,19 @@ var MouseCase =
 function () {
   function MouseCase(target, props) {
     if (props === void 0) {
-      props = {};
+      props = {
+        el: typeof target === 'string' ? document.querySelector(target) : target,
+        cssClass: 'js-mousecase',
+        debug: false,
+        rule: true
+      };
     }
 
-    var el = typeof target === 'string' ? document.querySelector(target) : target;
-
-    if (!el) {
-      if (props.debug) debug('no target element is defined');
-      return;
-    } else if (document.querySelectorAll(target).length > 1) {
-      if (props.debug) debug('MouseCase does not support multiple items, see docs for work arounds');
-      return;
-    } else if (!props.rule && props.rule === false) {
-      if (props.debug) debug(props.rule + " boolean is false; MouseCase is not running");
-      return;
-    }
-
+    if (canUseMouseCase(target)) return;
     this.state = {
       isDown: false,
       startx: null,
       scrollLeft: null
-    };
-    this.props = {
-      el: el,
-      cssClass: props.cssClass || 'js-mousecase',
-      debug: props.debug || false,
-      rule: props.rule || true
     };
     this.props.activeClass = this.props.cssClass + "--is-active";
     this.props.el.classList.add(this.props.cssClass);

@@ -1,6 +1,6 @@
 {
   "name": "mousecase",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "The computer mouse is not used much. Mouse Case is a utility to support no-mouse like horizontal scrolling with a mouse!",
   "main": "dist/mousecase.js",
   "module": "dist/mousecase.es.js",

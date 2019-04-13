@@ -12,6 +12,21 @@ export const debug = msg => console.warn('%c MouseCase 🐹:', 'background-color
  */
 export const objectToString = (o) => JSON.stringify(o)
 
+export const canUseMouseCase = (target, { debug, rule }) => {
+  if (!target) {
+    if (debug) debug('no target element is defined')
+    return false
+  } else if (document.querySelectorAll(target).length > 1) {
+    if (debug) debug('MouseCase does not support multiple items, see docs for work arounds')
+    return false
+  } else if (!rule && rule === false) {
+    if (debug) debug(`${rule} boolean is false; MouseCase is not running`)
+    return false
+  } else {
+    return true
+  }
+}
+
 /**
  * MouseCase
  * @param {target} string ||  node
@@ -25,17 +40,14 @@ class MouseCase {
     target,
     props = {},
   ) {
-    const el = typeof target === 'string' ? document.querySelector(target) : target
-    if (!el) {
-      if (props.debug) debug('no target element is defined')
-      return
-    } else if (document.querySelectorAll(target).length > 1) {
-      if (props.debug) debug('MouseCase does not support multiple items, see docs for work arounds')
-      return
-    } else if (!props.rule && props.rule === false) {
-      if (props.debug) debug(`${props.rule} boolean is false; MouseCase is not running`)
-      return
+    this.props = {
+      el: typeof target === 'string' ? document.querySelector(target) : target,
+      cssClass: props.cssClass || 'js-mousecase',
+      debug: props.debug || false,
+      rule: props.rule || true,
     }
+
+    if (canUseMouseCase(target, this.props)) return
 
     this.state = {
       isDown: false,
@@ -43,12 +55,6 @@ class MouseCase {
       scrollLeft: null,
     }
 
-    this.props = {
-      el,
-      cssClass: props.cssClass || 'js-mousecase',
-      debug: props.debug || false,
-      rule: props.rule || true,
-    }
     this.props.activeClass = `${this.props.cssClass}--is-active`
     this.props.el.classList.add(this.props.cssClass)
     if (this.props.rule) this.manageState()

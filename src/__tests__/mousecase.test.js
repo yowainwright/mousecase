@@ -6,7 +6,8 @@ import {
 
 describe('MouseCase init', () => {
   it('instatiates', () => {
-    const mousecase = new MouseCase()
+    document.body.innerHTML = mouseCaseDom
+    const mousecase = new MouseCase('#mouse-case')
     expect(typeof mousecase).toBe('object')
   })
 
