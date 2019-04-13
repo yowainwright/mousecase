@@ -1,6 +1,6 @@
 /**
   mousecase - The computer mouse is not used much. Mouse Case is a utility to support no-mouse like horizontal scrolling with a mouse!
-  @version v0.0.8
+  @version v0.0.9
   @link https://github.com/yowainwright/mousecase#readme
   @author Jeff Wainwright <yowainwright@gmail.com> (https://jeffry.in)
   @license MIT
@@ -16,9 +16,6 @@
    * @param {msg} string
    * provides useful mousecase messaging
    */
-  var debug = function debug(msg) {
-    return console.warn('%c MouseCase 🐹:', 'background-color: #FFB6C1; color: white', " " + msg);
-  };
   /**
    * objectToString
    * @param {o} object
@@ -28,7 +25,10 @@
   var objectToString = function objectToString(o) {
     return JSON.stringify(o);
   };
-  var canUseMouseCase = function canUseMouseCase(target) {
+  var canUseMouseCase = function canUseMouseCase(target, _ref) {
+    var debug = _ref.debug,
+        rule = _ref.rule;
+
     if (!target) {
       if (debug) debug('no target element is defined');
       return false;
@@ -36,7 +36,7 @@
       if (debug) debug('MouseCase does not support multiple items, see docs for work arounds');
       return false;
     } else if (!rule && rule === false) {
-      if (props.debug) debug(props.rule + " boolean is false; MouseCase is not running");
+      if (debug) debug(rule + " boolean is false; MouseCase is not running");
       return false;
     } else {
       return true;
@@ -56,15 +56,16 @@
   function () {
     function MouseCase(target, props) {
       if (props === void 0) {
-        props = {
-          el: typeof target === 'string' ? document.querySelector(target) : target,
-          cssClass: 'js-mousecase',
-          debug: false,
-          rule: true
-        };
+        props = {};
       }
 
-      if (canUseMouseCase(target)) return;
+      this.props = {
+        el: typeof target === 'string' ? document.querySelector(target) : target,
+        cssClass: props.cssClass || 'js-mousecase',
+        debug: props.debug || false,
+        rule: props.rule || true
+      };
+      if (canUseMouseCase(target, this.props)) return;
       this.state = {
         isDown: false,
         startx: null,
@@ -89,21 +90,28 @@
     };
 
     _proto.mouseDown = function mouseDown(e) {
-      var el = this.props.el;
+      var _this$props = this.props,
+          activeClass = _this$props.activeClass,
+          el = _this$props.el;
       this.state.isDown = true;
-      el.classList.add('active');
+      el.classList.add(activeClass);
       this.state.startX = e.pageX - el.offsetLeft;
       this.state.scrollLeft = el.scrollLeft;
       return this;
     };
 
     _proto.mouseNotDown = function mouseNotDown() {
-      if (this.state) this.state.isDown = false;
+      var _this$props2 = this.props,
+          activeClass = _this$props2.activeClass,
+          el = _this$props2.el,
+          debug = _this$props2.debug;
 
-      if (this.props && this.props.debug) {
-        debug("state: " + objectToString(this.state) + ", props: " + objectToString(this.props));
+      if (this.state.isDown) {
+        this.state.isDown = false;
+        el.classList.remove(activeClass);
       }
 
+      if (debug) debug("state: " + objectToString(this.state) + ", props: " + objectToString(this.props));
       return this;
     };
 

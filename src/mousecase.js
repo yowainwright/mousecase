@@ -72,19 +72,21 @@ class MouseCase {
   }
 
   mouseDown (e) {
-    const { el } = this.props
+    const { activeClass, el } = this.props
     this.state.isDown = true
-    el.classList.add('active')
+    el.classList.add(activeClass)
     this.state.startX = e.pageX - el.offsetLeft
     this.state.scrollLeft = el.scrollLeft
     return this
   }
 
   mouseNotDown () {
-    if (this.state) this.state.isDown = false
-    if (this.props && this.props.debug) {
-      debug(`state: ${objectToString(this.state)}, props: ${objectToString(this.props)}`)
+    const { activeClass, el, debug } = this.props
+    if (this.state.isDown) {
+      this.state.isDown = false
+      el.classList.remove(activeClass)
     }
+    if (debug) debug(`state: ${objectToString(this.state)}, props: ${objectToString(this.props)}`)
     return this
   }
 
