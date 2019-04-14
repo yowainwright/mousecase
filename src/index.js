@@ -52,9 +52,9 @@ const mousecase = (
       return this
     },
     mouseNotDown () {
+      this.state.isDown = false
       const { activeClass, el } = this.props
       el.classList.remove(activeClass)
-      if (this.state.isDown) this.state.isDown = false
       return this
     },
     manageState () {

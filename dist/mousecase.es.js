@@ -1,6 +1,6 @@
 /**
   mousecase - The computer mouse is not used much. Mouse Case is a utility to support no-mouse like horizontal scrolling with a mouse!
-  @version v1.0.0
+  @version v1.0.1
   @link https://github.com/yowainwright/mousecase#readme
   @author Jeff Wainwright <yowainwright@gmail.com> (https://jeffry.in)
   @license MIT
@@ -38,12 +38,16 @@ var mousecase = function mousecase(target, _temp) {
         return true;
       },
       mouseMove: function mouseMove(e) {
-        if (!this.state.isDown) return;
+        var _this$state = this.state,
+            isDown = _this$state.isDown,
+            scrollLeft = _this$state.scrollLeft,
+            startX = _this$state.startX;
+        if (!isDown) return;
         e.preventDefault();
         var el = this.props.el;
         var initial = e.pageX - el.offsetLeft;
-        var distance = (initial - this.state.startX) * 3;
-        el.scrollLeft = this.state.scrollLeft - distance;
+        var distance = (initial - startX) * 3;
+        el.scrollLeft = scrollLeft - distance;
         return this;
       },
       mouseDown: function mouseDown(e) {
@@ -57,11 +61,11 @@ var mousecase = function mousecase(target, _temp) {
         return this;
       },
       mouseNotDown: function mouseNotDown() {
+        this.state.isDown = false;
         var _this$props2 = this.props,
             activeClass = _this$props2.activeClass,
             el = _this$props2.el;
         el.classList.remove(activeClass);
-        if (this.state.isDown) this.state.isDown = false;
         return this;
       },
       manageState: function manageState() {
