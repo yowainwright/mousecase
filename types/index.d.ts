@@ -1,12 +1,11 @@
-export default function MouseCase (
+export default function mousecase (
   target: string | Element,
-  options?: MouseCase.Options,
+  options?: mousecase.options,
 ): any
 
-export namespace MouseCase {
-  export interface Options {
+export namespace mousecase {
+  export interface options {
     cssClass: string,
-    debug: boolean,
     rule: boolean,
   }
 }
