@@ -58,7 +58,7 @@ const createConfig = ({ input, output, env } = {}) => {
     output: ensureArray(output).map(format =>
       Object.assign({}, format, {
         banner,
-        name: 'MouseCase',
+        name: 'mousecase',
       })
     ),
   }
