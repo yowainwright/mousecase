@@ -22,6 +22,7 @@ const mousecase = (
     isDown: false,
     startx: null,
     scrollLeft: null,
+    isOn: false,
   },
   __proto__: {
     canUseMouseCase (target) {
@@ -34,9 +35,9 @@ const mousecase = (
       return true
     },
     mouseMove (e) {
-      if (!this.state.isDown) return this
-      const { el } = this.props
+      if (!this.state.isDown) return
       e.preventDefault()
+      const { el } = this.props
       const initial = e.pageX - el.offsetLeft
       const distance = (initial - this.state.startX) * 3
       el.scrollLeft = this.state.scrollLeft - distance
@@ -52,23 +53,30 @@ const mousecase = (
     },
     mouseNotDown () {
       const { activeClass, el } = this.props
-      if (this.state.isDown) {
-        this.state.isDown = false
-        el.classList.remove(activeClass)
-      }
+      el.classList.remove(activeClass)
+      if (this.state.isDown) this.state.isDown = false
       return this
     },
     manageState () {
+      if (!this.state.isOn) return
       const { el } = this.props
       el.addEventListener('mousemove', (e) => this.mouseMove(e))
       el.addEventListener('mousedown', (e) => this.mouseDown(e))
-      el.addEventListener('mouseleave', (e) => this.mouseNotDown(e))
-      el.addEventListener('mouseup', (e) => this.mouseNotDown(e))
+      el.addEventListener('mouseleave', () => this.mouseNotDown())
+      el.addEventListener('mouseup', () => this.mouseNotDown())
       return this
     },
     init () {
       if (this.canUseMouseCase(this.target, this.props) || !this.props.rule) return
+      this.state.isOn = true
       this.manageState()
+    },
+    off () {
+      this.state.isOn = false
+    },
+    on () {
+      this.state.isOn = true
+      return this
     },
   },
 })

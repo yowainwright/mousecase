@@ -29,7 +29,8 @@ var mousecase = function mousecase(target, _temp) {
     state: {
       isDown: false,
       startx: null,
-      scrollLeft: null
+      scrollLeft: null,
+      isOn: false
     },
     __proto__: {
       canUseMouseCase: function canUseMouseCase(target) {
@@ -37,9 +38,9 @@ var mousecase = function mousecase(target, _temp) {
         return true;
       },
       mouseMove: function mouseMove(e) {
-        if (!this.state.isDown) return this;
-        var el = this.props.el;
+        if (!this.state.isDown) return;
         e.preventDefault();
+        var el = this.props.el;
         var initial = e.pageX - el.offsetLeft;
         var distance = (initial - this.state.startX) * 3;
         el.scrollLeft = this.state.scrollLeft - distance;
@@ -59,17 +60,14 @@ var mousecase = function mousecase(target, _temp) {
         var _this$props2 = this.props,
             activeClass = _this$props2.activeClass,
             el = _this$props2.el;
-
-        if (this.state.isDown) {
-          this.state.isDown = false;
-          el.classList.remove(activeClass);
-        }
-
+        el.classList.remove(activeClass);
+        if (this.state.isDown) this.state.isDown = false;
         return this;
       },
       manageState: function manageState() {
         var _this = this;
 
+        if (!this.state.isOn) return;
         var el = this.props.el;
         el.addEventListener('mousemove', function (e) {
           return _this.mouseMove(e);
@@ -77,17 +75,25 @@ var mousecase = function mousecase(target, _temp) {
         el.addEventListener('mousedown', function (e) {
           return _this.mouseDown(e);
         });
-        el.addEventListener('mouseleave', function (e) {
-          return _this.mouseNotDown(e);
+        el.addEventListener('mouseleave', function () {
+          return _this.mouseNotDown();
         });
-        el.addEventListener('mouseup', function (e) {
-          return _this.mouseNotDown(e);
+        el.addEventListener('mouseup', function () {
+          return _this.mouseNotDown();
         });
         return this;
       },
       init: function init() {
         if (this.canUseMouseCase(this.target, this.props) || !this.props.rule) return;
+        this.state.isOn = true;
         this.manageState();
+      },
+      off: function off() {
+        this.state.isOn = false;
+      },
+      on: function on() {
+        this.state.isOn = true;
+        return this;
       }
     }
   };
