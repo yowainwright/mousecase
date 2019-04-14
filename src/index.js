@@ -73,6 +73,7 @@ const mousecase = (
     },
     off () {
       this.state.isOn = false
+      return this
     },
     on () {
       this.state.isOn = true
