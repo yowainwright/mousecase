@@ -1,6 +1,6 @@
-# Mousecase
+# Mousecase 🐁🖱
 
-Mousecase provides touch-like horizontal scrolling in for mouse pads in web browsers.
+Mousecase is a JavaScript utility supporting touch-like horizontal scrolling with a mouse!
 It is a no-nonsense, 0 dependency JavaScript plugin that solves 1 use case:
 
 > Scrolling a horizontal browser window plain with a mouse **without** using a scrollbar.
@@ -8,11 +8,6 @@ It is a no-nonsense, 0 dependency JavaScript plugin that solves 1 use case:
 ## Synopsis
 
 Being able to horizontally scroll is a default behavior on phones and with trackpads. With Mousecase, the archaic computer mouse pad can keep up! Yay. Users can click down on their computer mouse pad and drag scrollable horizontal browser window content without a scrollbar. This utility can help remove the need to implement a slider or carousel thingy. Therefore, it basically saves lives!
-Do you want to be saved? Great! Use Mousecase and become a happier engineer today. You can use it tomorrow too. Probably.
-
-## Why wouldn't I write these few lines of code myself?
-
-Why **would** you write these few lines code yourself when you can use Mousecase and have a few more lines of code for **free**?
 
 ## Setup
 
@@ -73,4 +68,3 @@ Performance improvements
 Testing
 
 - implement puppeteer to test MouseCase
-

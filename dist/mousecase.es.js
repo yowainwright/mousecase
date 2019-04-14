@@ -38,16 +38,12 @@ var mousecase = function mousecase(target, _temp) {
         return true;
       },
       mouseMove: function mouseMove(e) {
-        var _this$state = this.state,
-            isDown = _this$state.isDown,
-            scrollLeft = _this$state.scrollLeft,
-            startX = _this$state.startX;
-        if (!isDown) return;
+        if (!this.state.isDown) return;
         e.preventDefault();
         var el = this.props.el;
         var initial = e.pageX - el.offsetLeft;
-        var distance = (initial - startX) * 3;
-        el.scrollLeft = scrollLeft - distance;
+        var distance = (initial - this.state.startX) * 3;
+        el.scrollLeft = this.state.scrollLeft - distance;
         return this;
       },
       mouseDown: function mouseDown(e) {
