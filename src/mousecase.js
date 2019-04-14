@@ -12,92 +12,91 @@ export const debug = msg => console.warn('%c MouseCase 🐹:', 'background-color
  */
 export const objectToString = (o) => JSON.stringify(o)
 
-export const canUseMouseCase = (target, { debug, rule }) => {
-  if (!target) {
-    if (debug) debug('no target element is defined')
-    return false
-  } else if (document.querySelectorAll(target).length > 1) {
-    if (debug) debug('MouseCase does not support multiple items, see docs for work arounds')
-    return false
-  } else if (!rule && rule === false) {
-    if (debug) debug(`${rule} boolean is false; MouseCase is not running`)
-    return false
-  } else {
-    return true
-  }
-}
-
 /**
- * MouseCase
+ * mouseCase
  * @param {target} string ||  node
  * @param {props} object
  * @param {props.debug} boolean
  * @param {props.cssClass} string
  * @param {props.rule} boolean
  */
-class MouseCase {
-  constructor (
-    target,
-    props = {},
-  ) {
-    this.props = {
-      el: typeof target === 'string' ? document.querySelector(target) : target,
-      cssClass: props.cssClass || 'js-mousecase',
-      debug: props.debug || false,
-      rule: props.rule || true,
-    }
+export const mouseCase = (
+  target,
+  {
+    cssClass = 'js-mousecase',
+    debug = false,
+    rule = true,
+  } = {}
+) => ({
+  props: {
+    el: typeof target === 'string' ? document.querySelector(target) : target,
+    cssClass,
+    debug,
+    rule,
+    activeClass: `${cssClass}--is-active`,
+  },
+  state: {
+    isDown: false,
+    startx: null,
+    scrollLeft: null,
+  },
+  __proto__: {
+    canUseMouseCase (target) {
+      const { debug, rule } = this.props
+      if (!target) {
+        if (debug) debug('no target element is defined')
+        return false
+      } else if (document.querySelectorAll(target).length > 1) {
+        if (debug) debug('MouseCase does not support multiple items, see docs for work arounds')
+        return false
+      } else if (!rule && rule === false) {
+        if (debug) debug(`${rule} boolean is false; MouseCase is not running`)
+        return false
+      } else {
+        return true
+      }
+    },
+    mouseMove (e) {
+      if (!this.state.isDown) return this
+      const { el } = this.props
+      e.preventDefault()
+      const initial = e.pageX - el.offsetLeft
+      const distance = (initial - this.state.startX) * 3
+      el.scrollLeft = this.state.scrollLeft - distance
+      return this
+    },
+    mouseDown (e) {
+      const { activeClass, el } = this.props
+      this.state.isDown = true
+      el.classList.add(activeClass)
+      this.state.startX = e.pageX - el.offsetLeft
+      this.state.scrollLeft = el.scrollLeft
+      return this
+    },
+    mouseNotDown () {
+      const { activeClass, el, debug } = this.props
+      if (this.state.isDown) {
+        this.state.isDown = false
+        el.classList.remove(activeClass)
+      }
+      if (debug) debug(`state: ${objectToString(this.state)}, props: ${objectToString(this.props)}`)
+      return this
+    },
+    manageState () {
+      const { el } = this.props
+      el.addEventListener('mousemove', (e) => this.mouseMove(e))
+      el.addEventListener('mousedown', (e) => this.mouseDown(e))
+      el.addEventListener('mouseleave', (e) => this.mouseNotDown(e))
+      el.addEventListener('mouseup', (e) => this.mouseNotDown(e))
+      return this
+    },
+    init () {
+      if (this.canUseMouseCase(this.target, this.props) || !this.props.rule) return
+      this.manageState()
+    },
+  },
+})
 
-    if (canUseMouseCase(target, this.props)) return
-
-    this.state = {
-      isDown: false,
-      startx: null,
-      scrollLeft: null,
-    }
-
-    this.props.activeClass = `${this.props.cssClass}--is-active`
-    this.props.el.classList.add(this.props.cssClass)
-    if (this.props.rule) this.manageState()
-    return this
-  }
-
-  mouseMove (e) {
-    if (!this.state.isDown) return this
-    const { el } = this.props
-    e.preventDefault()
-    const initial = e.pageX - el.offsetLeft
-    const distance = (initial - this.state.startX) * 3
-    el.scrollLeft = this.state.scrollLeft - distance
-    return this
-  }
-
-  mouseDown (e) {
-    const { activeClass, el } = this.props
-    this.state.isDown = true
-    el.classList.add(activeClass)
-    this.state.startX = e.pageX - el.offsetLeft
-    this.state.scrollLeft = el.scrollLeft
-    return this
-  }
-
-  mouseNotDown () {
-    const { activeClass, el, debug } = this.props
-    if (this.state.isDown) {
-      this.state.isDown = false
-      el.classList.remove(activeClass)
-    }
-    if (debug) debug(`state: ${objectToString(this.state)}, props: ${objectToString(this.props)}`)
-    return this
-  }
-
-  manageState () {
-    const { el } = this.props
-    el.addEventListener('mousemove', (e) => this.mouseMove(e))
-    el.addEventListener('mousedown', (e) => this.mouseDown(e))
-    el.addEventListener('mouseleave', (e) => this.mouseNotDown(e))
-    el.addEventListener('mouseup', (e) => this.mouseNotDown(e))
-    return this
-  }
-}
+const MouseCase = mouseCase.init()
 
 export { MouseCase }

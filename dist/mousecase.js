@@ -25,25 +25,8 @@
   var objectToString = function objectToString(o) {
     return JSON.stringify(o);
   };
-  var canUseMouseCase = function canUseMouseCase(target, _ref) {
-    var debug = _ref.debug,
-        rule = _ref.rule;
-
-    if (!target) {
-      if (debug) debug('no target element is defined');
-      return false;
-    } else if (document.querySelectorAll(target).length > 1) {
-      if (debug) debug('MouseCase does not support multiple items, see docs for work arounds');
-      return false;
-    } else if (!rule && rule === false) {
-      if (debug) debug(rule + " boolean is false; MouseCase is not running");
-      return false;
-    } else {
-      return true;
-    }
-  };
   /**
-   * MouseCase
+   * mouseCase
    * @param {target} string ||  node
    * @param {props} object
    * @param {props.debug} boolean
@@ -51,91 +34,106 @@
    * @param {props.rule} boolean
    */
 
-  var MouseCase =
-  /*#__PURE__*/
-  function () {
-    function MouseCase(target, props) {
-      if (props === void 0) {
-        props = {};
-      }
+  var mouseCase = function mouseCase(target, _temp) {
+    var _ref = _temp === void 0 ? {} : _temp,
+        _ref$cssClass = _ref.cssClass,
+        cssClass = _ref$cssClass === void 0 ? 'js-mousecase' : _ref$cssClass,
+        _ref$debug = _ref.debug,
+        debug = _ref$debug === void 0 ? false : _ref$debug,
+        _ref$rule = _ref.rule,
+        rule = _ref$rule === void 0 ? true : _ref$rule;
 
-      this.props = {
+    return {
+      props: {
         el: typeof target === 'string' ? document.querySelector(target) : target,
-        cssClass: props.cssClass || 'js-mousecase',
-        debug: props.debug || false,
-        rule: props.rule || true
-      };
-      if (canUseMouseCase(target, this.props)) return;
-      this.state = {
+        cssClass: cssClass,
+        debug: debug,
+        rule: rule,
+        activeClass: cssClass + "--is-active"
+      },
+      state: {
         isDown: false,
         startx: null,
         scrollLeft: null
-      };
-      this.props.activeClass = this.props.cssClass + "--is-active";
-      this.props.el.classList.add(this.props.cssClass);
-      if (this.props.rule) this.manageState();
-      return this;
-    }
+      },
+      __proto__: {
+        canUseMouseCase: function canUseMouseCase(target) {
+          var _this$props = this.props,
+              debug = _this$props.debug,
+              rule = _this$props.rule;
 
-    var _proto = MouseCase.prototype;
+          if (!target) {
+            if (debug) debug('no target element is defined');
+            return false;
+          } else if (document.querySelectorAll(target).length > 1) {
+            if (debug) debug('MouseCase does not support multiple items, see docs for work arounds');
+            return false;
+          } else if (!rule && rule === false) {
+            if (debug) debug(rule + " boolean is false; MouseCase is not running");
+            return false;
+          } else {
+            return true;
+          }
+        },
+        mouseMove: function mouseMove(e) {
+          if (!this.state.isDown) return this;
+          var el = this.props.el;
+          e.preventDefault();
+          var initial = e.pageX - el.offsetLeft;
+          var distance = (initial - this.state.startX) * 3;
+          el.scrollLeft = this.state.scrollLeft - distance;
+          return this;
+        },
+        mouseDown: function mouseDown(e) {
+          var _this$props2 = this.props,
+              activeClass = _this$props2.activeClass,
+              el = _this$props2.el;
+          this.state.isDown = true;
+          el.classList.add(activeClass);
+          this.state.startX = e.pageX - el.offsetLeft;
+          this.state.scrollLeft = el.scrollLeft;
+          return this;
+        },
+        mouseNotDown: function mouseNotDown() {
+          var _this$props3 = this.props,
+              activeClass = _this$props3.activeClass,
+              el = _this$props3.el,
+              debug = _this$props3.debug;
 
-    _proto.mouseMove = function mouseMove(e) {
-      if (!this.state.isDown) return this;
-      var el = this.props.el;
-      e.preventDefault();
-      var initial = e.pageX - el.offsetLeft;
-      var distance = (initial - this.state.startX) * 3;
-      el.scrollLeft = this.state.scrollLeft - distance;
-      return this;
-    };
+          if (this.state.isDown) {
+            this.state.isDown = false;
+            el.classList.remove(activeClass);
+          }
 
-    _proto.mouseDown = function mouseDown(e) {
-      var _this$props = this.props,
-          activeClass = _this$props.activeClass,
-          el = _this$props.el;
-      this.state.isDown = true;
-      el.classList.add(activeClass);
-      this.state.startX = e.pageX - el.offsetLeft;
-      this.state.scrollLeft = el.scrollLeft;
-      return this;
-    };
+          if (debug) debug("state: " + objectToString(this.state) + ", props: " + objectToString(this.props));
+          return this;
+        },
+        manageState: function manageState() {
+          var _this = this;
 
-    _proto.mouseNotDown = function mouseNotDown() {
-      var _this$props2 = this.props,
-          activeClass = _this$props2.activeClass,
-          el = _this$props2.el,
-          debug = _this$props2.debug;
-
-      if (this.state.isDown) {
-        this.state.isDown = false;
-        el.classList.remove(activeClass);
+          var el = this.props.el;
+          el.addEventListener('mousemove', function (e) {
+            return _this.mouseMove(e);
+          });
+          el.addEventListener('mousedown', function (e) {
+            return _this.mouseDown(e);
+          });
+          el.addEventListener('mouseleave', function (e) {
+            return _this.mouseNotDown(e);
+          });
+          el.addEventListener('mouseup', function (e) {
+            return _this.mouseNotDown(e);
+          });
+          return this;
+        },
+        init: function init() {
+          if (this.canUseMouseCase(this.target, this.props) || !this.props.rule) return;
+          this.manageState();
+        }
       }
-
-      if (debug) debug("state: " + objectToString(this.state) + ", props: " + objectToString(this.props));
-      return this;
     };
-
-    _proto.manageState = function manageState() {
-      var _this = this;
-
-      var el = this.props.el;
-      el.addEventListener('mousemove', function (e) {
-        return _this.mouseMove(e);
-      });
-      el.addEventListener('mousedown', function (e) {
-        return _this.mouseDown(e);
-      });
-      el.addEventListener('mouseleave', function (e) {
-        return _this.mouseNotDown(e);
-      });
-      el.addEventListener('mouseup', function (e) {
-        return _this.mouseNotDown(e);
-      });
-      return this;
-    };
-
-    return MouseCase;
-  }();
+  };
+  var MouseCase = mouseCase.init();
 
   return MouseCase;
 
