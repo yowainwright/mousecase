@@ -1,6 +1,6 @@
 /**
   mousecase - The computer mouse is not used much. Mouse Case is a utility to support no-mouse like horizontal scrolling with a mouse!
-  @version v0.0.10
+  @version v1.0.0
   @link https://github.com/yowainwright/mousecase#readme
   @author Jeff Wainwright <yowainwright@gmail.com> (https://jeffry.in)
   @license MIT
