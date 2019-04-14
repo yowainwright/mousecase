@@ -67,5 +67,6 @@ window.addEventListener('load', () => {
   const test1 = document.getElementById('test-1')
   test1.innerHTML = test1Dom
   /* eslint-disable */
-  const mouseCase = new MouseCase('#mouse-case', { debug: true })
+  const mouseCase = mousecase('#mouse-case')
+  mouseCase.init()
 })

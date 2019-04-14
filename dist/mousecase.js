@@ -1,5 +1,5 @@
 /**
-  mousecase - The computer mouse is not used much. Mouse Case is a utility to support no-mouse like horizontal scrolling with a mouse!
+  mousecase - Mousecase is a JavaScript utility supporting touch-like horizontal scrolling with a mouse!
   @version v1.0.1
   @link https://github.com/yowainwright/mousecase#readme
   @author Jeff Wainwright <yowainwright@gmail.com> (https://jeffry.in)
@@ -96,6 +96,7 @@
         },
         off: function off() {
           this.state.isOn = false;
+          return this;
         },
         on: function on() {
           this.state.isOn = true;

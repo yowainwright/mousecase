@@ -1,4 +1,4 @@
-# Mousecase 🐁🖱
+# Mousecase 🖱💼
 
 Mousecase is a JavaScript utility supporting touch-like horizontal scrolling with a mouse!
 It is a no-nonsense, 0 dependency JavaScript plugin that solves 1 use case:
