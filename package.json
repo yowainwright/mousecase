@@ -25,7 +25,7 @@
     "spelling:ci": "mdspell '**/*.md' '!**/node_modules/**/*.md' --ignore-numbers --report",
     "start": "npm i",
     "start:server": "node app.js",
-    "test": "jest --config jest.jsdom.json"
+    "test": "jest --config jest.jsdom.json --coverage"
   },
   "repository": {
     "type": "git",
