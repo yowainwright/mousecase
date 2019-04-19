@@ -26,4 +26,5 @@ jobs:
       - run: npm install
       - run: npm run eslint:ci
       - run: yarn test
+      - run: npx codecov
       - save_cache: *save_cache
