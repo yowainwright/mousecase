@@ -13,7 +13,7 @@ const mousecase = (
   } = {}
 ) => ({
   props: {
-    el: typeof target === 'string' ? document.querySelector(target) : target,
+    el: !target ? null : typeof target === 'string' ? document.querySelector(target) : target,
     cssClass,
     rule,
     activeClass: `${cssClass}--is-active`,
@@ -25,13 +25,13 @@ const mousecase = (
     isOn: false,
   },
   __proto__: {
-    canUseMouseCase (target) {
+    canUseMouseCase (target, rule) {
       if (
         !target ||
         document.querySelectorAll(target).length > 1 ||
-        this.props.rule === false
-      ) return false
+        rule === false || !rule
 
+      ) return false
       return true
     },
     mouseMove (e) {
@@ -67,7 +67,7 @@ const mousecase = (
       return this
     },
     init () {
-      if (this.canUseMouseCase(this.target, this.props) || !this.props.rule) return
+      if (!this.canUseMouseCase(target, this.props.rule)) return
       this.state.isOn = true
       this.manageState()
     },

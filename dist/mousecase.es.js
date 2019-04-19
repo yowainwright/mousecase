@@ -1,6 +1,6 @@
 /**
   mousecase - Mousecase is a JavaScript utility supporting touch-like horizontal scrolling with a mouse!
-  @version v1.0.1
+  @version v1.0.2
   @link https://github.com/yowainwright/mousecase#readme
   @author Jeff Wainwright <yowainwright@gmail.com> (https://jeffry.in)
   @license MIT
@@ -21,7 +21,7 @@ var mousecase = function mousecase(target, _temp) {
 
   return {
     props: {
-      el: typeof target === 'string' ? document.querySelector(target) : target,
+      el: !target ? null : typeof target === 'string' ? document.querySelector(target) : target,
       cssClass: cssClass,
       rule: rule,
       activeClass: cssClass + "--is-active"
@@ -33,8 +33,8 @@ var mousecase = function mousecase(target, _temp) {
       isOn: false
     },
     __proto__: {
-      canUseMouseCase: function canUseMouseCase(target) {
-        if (!target || document.querySelectorAll(target).length > 1 || this.props.rule === false) return false;
+      canUseMouseCase: function canUseMouseCase(target, rule) {
+        if (!target || document.querySelectorAll(target).length > 1 || rule === false || !rule) return false;
         return true;
       },
       mouseMove: function mouseMove(e) {
@@ -84,7 +84,7 @@ var mousecase = function mousecase(target, _temp) {
         return this;
       },
       init: function init() {
-        if (this.canUseMouseCase(this.target, this.props) || !this.props.rule) return;
+        if (!this.canUseMouseCase(target, this.props.rule)) return;
         this.state.isOn = true;
         this.manageState();
       },

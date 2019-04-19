@@ -42,14 +42,31 @@ MouseCase itself is a factory that takes in 2 arguments.
 
 #### `Arguments`
 
-**`target`** an `string` or `node` that is selected to use mousecase
+**`target`** an `string` or `node` that is selected to use mousecase; is required
 > **ex:** `mouseCase('some-target')`
 
 **`props`:** `{object}` containing plugin config
 > **ex:** `mouseCase('some-target', { cssClass: 'mousecase-fun' })`
 
-- **`cssClass`:** the css class adds to the target element
+- **`activeClass`** the css class added to the mousecase target element when mousecase is active
+- **`cssClass`:** the css class added to the mousecase target element
+- **`el`** the formatted target element
 - **`rule`:** a boolean rule that defines whether mousecase should run (or not)
+
+- all **`props`** are added as defaults if not provided during setup
+
+#### `Methods`
+
+**`init()`** initiates mousecase (setup).
+> **ex:** `someMouseCaseInstance.init()`
+
+**`on()`** turns mousecase back on (after initiation)
+> **ex:** `someMouseCaseInstance.on()`
+
+**`off()`** turns mousecase off (after initiation)
+> **ex:** `someMouseCaseInstance.off()`
+
+- There are other methods used within Mousecase but not intended for general use
 
 ## Demos
 
@@ -57,14 +74,3 @@ Listed below is a basic Mousecase demo. Feel free to share more.
 
 - Bill Murray [CodePen](https://codepen.io/yowainwright/pen/d2fa41088f4d40dd9dd55fa72d60441f)
 - Please submit a PR with your demo [here](/pulls). 💕
-
-## Roadmap
-
-Performance improvements
-
-- Provide slight configurable delay to dragging
-- Provide a threshold for accidental dragging
-
-Testing
-
-- implement puppeteer to test MouseCase
