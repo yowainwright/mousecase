@@ -1,5 +1,7 @@
 # Mousecase 🖱💼
 
+[![CircleCI](https://circleci.com/gh/yowainwright/mousecase.svg?style=svg)](https://circleci.com/gh/yowainwright/mousecase)
+
 Mousecase is a JavaScript utility supporting touch-like horizontal scrolling with a mouse!
 It is a no-nonsense, 0 dependency JavaScript plugin that solves 1 use case:
 
