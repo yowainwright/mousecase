@@ -14,7 +14,29 @@ describe('mouseCase init', () => {
     document.body.innerHTML = mouseCaseDom
     const test = mousecase('#mouse-case')
     test.init()
+    expect(test.props.activeClass).toBe('js-mousecase--is-active')
+    expect(test.props.el.id).toBe('mouse-case')
+    expect(test.props.cssClass).toBe('js-mousecase')
     expect(test.props.rule).toBe(true)
+  })
+
+  it('has initial state', () => {
+    document.body.innerHTML = mouseCaseDom
+    const test = mousecase('#mouse-case')
+    expect(test.state.isDown).toBe(false)
+    expect(test.state.startx).toBe(null)
+    expect(test.state.scrollLeft).toBe(null)
+    expect(test.state.isOn).toBe(false)
+    test.init()
+    expect(test.state.isOn).toBe(true)
+  })
+
+  it('has working canUseMouseCase function', () => {
+    document.body.innerHTML = mouseCaseDom
+    const test = mousecase()
+    test.init()
+
+    expect(test.props.el).toBe(null)
   })
 
   it('mouseDown', () => {
