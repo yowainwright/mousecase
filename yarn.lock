@@ -2040,10 +2040,10 @@ escodegen@^1.9.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-dollarshaveclub@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-dollarshaveclub/-/eslint-config-dollarshaveclub-4.0.0.tgz#f7e9fa1a96de16d2287bd190107eca5c6ecd7a4d"
-  integrity sha512-5BePJ0N0Hjw57Kt38UdNMnRaYq8nQPkqWG/gQMZK4speoLmhuaNS82mfxAQEIkD5g/ondp4qbh3WLtGeeZWI/g==
+eslint-config-dollarshaveclub@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-dollarshaveclub/-/eslint-config-dollarshaveclub-6.0.0.tgz#a405165ec7e437a601f4aee801ee5b78efe80a45"
+  integrity sha512-y4hX1Bs85z3zCfauhO6Y6ha63WiVEkugstVfIlsTT7hQ8O9bEfuOmqqKvXIKdt/hbyU3CxkDMKg3Gch1EN09pg==
 
 eslint-config-standard@^12.0.0:
   version "12.0.0"
