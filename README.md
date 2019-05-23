@@ -1,3 +1,5 @@
+![MouseCase](https://yowainwright.imgix.net/mousecase/mousecase.jpg?auto=format)
+
 # Mousecase 🖱💼
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/yowainwright/mousecase.svg)](https://greenkeeper.io/)
