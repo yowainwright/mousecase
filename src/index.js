@@ -1,6 +1,6 @@
 /**
  * mouseCase
- * @param {target} string ||  node
+ * @param {target} string || node
  * @param {props} object
  * @param {props.cssClass} string
  * @param {props.rule} boolean
