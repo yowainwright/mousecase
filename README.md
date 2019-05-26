@@ -82,7 +82,8 @@ MouseCase itself is a factory function that takes in 2 arguments.
 
 Listed below is a basic Mousecase demo. Feel free to share more.
 
-- Bill Murray [CodePen](https://codepen.io/yowainwright/pen/d2fa41088f4d40dd9dd55fa72d60441f)
+- Bill Murray single instance [CodePen](https://codepen.io/yowainwright/pen/d2fa41088f4d40dd9dd55fa72d60441f)
+- Bill Murray multiple instances [CodePen](https://codepen.io/yowainwright/pen/3d442391a2e4370da4b12e7f16fddeaf)
 - Please submit a PR with your demo [here](/pulls). 💕
 
 ## Help and thanks
