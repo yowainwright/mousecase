@@ -11,7 +11,8 @@
     "jest": true,
     "test": true,
     "window": true,
-    "Event": true
+    "Event": true,
+    "HTMLElement": true
   },
   "rules": {
    "no-console": "off"

@@ -1,6 +1,6 @@
 /**
  * mouseCase
- * @param {target} string || node
+ * @param {target} string
  * @param {props} object
  * @param {props.cssClass} string
  * @param {props.rule} boolean
@@ -13,7 +13,7 @@ const mousecase = (
   } = {}
 ) => ({
   props: {
-    el: !target ? null : typeof target === 'string' ? document.querySelector(target) : target,
+    el: !target ? null : document.querySelector(target),
     cssClass,
     rule,
     activeClass: `${cssClass}--is-active`,
