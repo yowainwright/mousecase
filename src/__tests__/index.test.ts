@@ -1,4 +1,4 @@
-import { mouseCaseDom } from '../../utils/mock-data'
+import { mouseCaseDom } from '../utils/mock-data'
 
 import mousecase from '..'
 

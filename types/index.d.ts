@@ -25,9 +25,5 @@ export interface MouseCaseState extends Readonly<{
     isOn: boolean;
 }> {
 }
-declare const mousecase: (target: string, { cssClass, rule, }?: MouseCasePropArguments) => {
-    props: MouseCaseProps;
-    state: MouseCaseState;
-    __proto__: any;
-};
+declare const mousecase: $FIXME;
 export default mousecase;
