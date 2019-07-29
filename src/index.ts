@@ -1,18 +1,42 @@
 /**
+import { boolean } from '@storybook/addon-knobs';
  * mouseCase
  * @param {target} string
  * @param {props} object
  * @param {props.cssClass} string
  * @param {props.rule} boolean
  */
+
+type $FIXME = any
+
+export interface MouseCasePropArguments {
+  cssClass?: string | null
+  rule?: boolean | null
+} {}
+
+
+export interface MouseCaseProps extends Readonly<{
+  activeClass?: string
+  cssClass?: string | null
+  el: string | $FIXME
+  rule?: boolean | null
+}> {}
+
+export interface MouseCaseState extends Readonly<{
+  isDown?: boolean
+  startx: number | null
+  scrollLeft: number | null
+  isOn: boolean 
+}> {}
+
 const mousecase = (
-  target,
+  target: string | $FIXME,
   {
     cssClass = 'js-mousecase',
     rule = true,
-  } = {}
+  }: MouseCasePropArguments = {}
 ) => ({
-  props: {
+  props<MouseCaseProps>: {
     el: !target ? null : document.querySelector(target),
     cssClass,
     rule,
@@ -25,7 +49,7 @@ const mousecase = (
     isOn: false,
   },
   __proto__: {
-    canUseMouseCase (target, rule) {
+    canUseMouseCase (target: string, rule: boolean): boolean {
       if (
         !target ||
         document.querySelectorAll(target).length > 1 ||
@@ -34,7 +58,7 @@ const mousecase = (
       ) return false
       return true
     },
-    mouseMove (e) {
+    mouseMove (e: $FIXME) {
       if (!this.state.isDown) return
       e.preventDefault()
       const { el } = this.props
@@ -43,7 +67,7 @@ const mousecase = (
       el.scrollLeft = this.state.scrollLeft - distance
       return this
     },
-    mouseDown (e) {
+    mouseDown (e: MouseEvent) {
       const { activeClass, el } = this.props
       this.state.isDown = true
       el.classList.add(activeClass)
@@ -60,8 +84,8 @@ const mousecase = (
     manageState () {
       if (!this.state.isOn) return
       const { el } = this.props
-      el.addEventListener('mousemove', (e) => this.mouseMove(e))
-      el.addEventListener('mousedown', (e) => this.mouseDown(e))
+      el.addEventListener('mousemove', (e: MouseEvent) => this.mouseMove(e))
+      el.addEventListener('mousedown', (e: MouseEvent) => this.mouseDown(e))
       el.addEventListener('mouseleave', () => this.mouseNotDown())
       el.addEventListener('mouseup', () => this.mouseNotDown())
       return this

@@ -1,5 +1,5 @@
 import babel from 'rollup-plugin-babel'
-// import replace from 'rollup-plugin-replace'
+import typescript from 'rollup-plugin-typescript2'
 import { uglify } from 'rollup-plugin-uglify'
 import {
   author,
@@ -47,6 +47,7 @@ const ensureArray = maybeArr =>
 
 const createConfig = ({ input, output, env } = {}) => {
   const plugins = [
+    typescript({ useTsconfigDeclarationDir: true }),
     babel(babelSetup),
   ]
 
@@ -66,11 +67,11 @@ const createConfig = ({ input, output, env } = {}) => {
 
 export default [
   createConfig({
-    input: 'src/index.js',
+    input: 'src/index.ts',
     output: [{ file: main, format: 'umd' }, { file: module, format: 'es' }],
   }),
   createConfig({
-    input: 'src/index.js',
+    input: 'src/index.ts',
     output: {
       file: 'dist/mousecase.min.js',
       format: 'umd',
