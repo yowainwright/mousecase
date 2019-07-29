@@ -29,26 +29,26 @@ export interface MouseCaseState extends Readonly<{
   isOn: boolean 
 }> {}
 
-const mousecase = (
-  target: string | $FIXME,
+const mousecase: $FIXME = (
+  target: string,
   {
     cssClass = 'js-mousecase',
     rule = true,
   }: MouseCasePropArguments = {}
 ) => ({
-  props<MouseCaseProps>: {
+  props: {
     el: !target ? null : document.querySelector(target),
     cssClass,
     rule,
     activeClass: `${cssClass}--is-active`,
-  },
+  } as MouseCaseProps,
   state: {
     isDown: false,
     startx: null,
     scrollLeft: null,
     isOn: false,
-  },
-  __proto__: {
+  } as MouseCaseState,
+  __proto__: <$FIXME> {
     canUseMouseCase (target: string, rule: boolean): boolean {
       if (
         !target ||

@@ -2,6 +2,8 @@ import { mouseCaseDom } from '../../utils/mock-data'
 
 import mousecase from '..'
 
+type $FIXME = any
+
 describe('mouseCase init', () => {
   it('initiates basic target', () => {
     document.body.innerHTML = mouseCaseDom
@@ -64,7 +66,7 @@ describe('mouseCase init', () => {
     test.init()
     test.mouseDown = jest.fn()
     const e = new Event('mousedown')
-    const testEl = document.getElementById('mouse-case')
+    const testEl: $FIXME = document.getElementById('mouse-case')
     testEl.dispatchEvent(e)
     testEl.addEventListener('mousedown', () => {
       expect(test.state.isDown).toBe(true)
@@ -78,7 +80,7 @@ describe('mouseCase init', () => {
     test.init()
     test.mouseMove = jest.fn()
     const e = new Event('mousedown')
-    const testEl = document.getElementById('mouse-case')
+    const testEl: $FIXME = document.getElementById('mouse-case')
     testEl.dispatchEvent(e)
     testEl.addEventListener('mousemove', () => {
       expect(test.state.isDown).toBe(true)
@@ -90,7 +92,7 @@ describe('mouseCase init', () => {
     document.body.innerHTML = mouseCaseDom
     const test = mousecase('#mouse-case').init()
     const e = new Event('mouseup')
-    const testEl = document.getElementById('mouse-case')
+    const testEl: $FIXME = document.getElementById('mouse-case')
     testEl.dispatchEvent(e)
     testEl.addEventListener('mousemove', () => {
       expect(test.state.isDown).toBe(false)
