@@ -24,6 +24,7 @@
   "rules": {
     "no-console": "off",
     "trailingComma":  0,
+    "semi": [2, "never"],
     "@typescript-eslint/no-angle-bracket-type-assertion": 0,
     "@typescript-eslint/no-object-literal-type-assertion": 0,
     "@typescript-eslint/explicit-function-return-type": 0

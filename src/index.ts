@@ -14,6 +14,21 @@ interface MouseCasePropArguments {
     rule?: boolean | null;
 }
 
+
+interface MouseCaseProps {
+    activeClass?: string;
+    cssClass?: string | null;
+    el: string | $FIXME;
+    rule?: boolean | null;
+}
+
+interface MouseCaseState {
+    isDown?: boolean;
+    startx: number | null;
+    scrollLeft: number | null;
+    isOn: boolean; 
+}
+
 const mousecase: $FIXME = (
     target: string,
     {
@@ -26,14 +41,14 @@ const mousecase: $FIXME = (
         cssClass,
         rule,
         activeClass: `${cssClass}--is-active`,
-    },
+    } as MouseCaseProps,
     state: {
         isDown: false,
         startx: null,
         scrollLeft: null,
         isOn: false,
-    },
-    __proto__: <$FIXME> {
+    } as MouseCaseState,
+    __proto__: {
         canUseMouseCase (target: string, rule: boolean): boolean {
             if (
                 !target ||
@@ -88,7 +103,7 @@ const mousecase: $FIXME = (
             this.state.isOn = true
             return this
         },
-    },
+    } as $FIXME,
 })
 
 export default mousecase
