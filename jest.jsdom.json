@@ -1,16 +1,20 @@
 {
+  "transform": {
+    ".ts": "ts-jest"
+  },
   "collectCoverageFrom": [
-    "src/**/*.{js,jsx,ts,tsx}"
+    "src/**/*.{js,ts}"
   ],
   "moduleFileExtensions": [
-    "js"
+    "js",
+    "ts"
   ],
   "roots": [
     "src"
   ],
   "testEnvironment": "jsdom",
   "testMatch": [
-    "<rootDir>/**/__tests__/**/*.js"
+    "<rootDir>/**/__tests__/**/*.ts"
   ],
   "testURL": "http://localhost"
 }

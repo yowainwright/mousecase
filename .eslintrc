@@ -1,5 +1,12 @@
 {
-  "extends": "dollarshaveclub",
+  "parser":  "@typescript-eslint/parser",
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+  ],
+  "parserOptions":  {
+    "ecmaVersion":  2018,
+    "sourceType":  "module",
+  },
   "globals": {
     "afterAll": true,
     "beforeAll": true,
@@ -15,6 +22,14 @@
     "HTMLElement": true
   },
   "rules": {
-   "no-console": "off"
+    "no-console": "off",
+    "trailingComma":  0,
+    "semi": "off",
+    "indent": "off",
+    "@typescript-eslint/no-angle-bracket-type-assertion": 0,
+    "@typescript-eslint/no-object-literal-type-assertion": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/semi": ["error"],
+    "@typescript-eslint/indent": ["error", 2]
   }
 }
