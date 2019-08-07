@@ -11,19 +11,11 @@
     (global = global || self, global.mousecase = factory());
 }(this, function () { 'use strict';
 
-    /**
-    import { boolean } from '@storybook/addon-knobs';
-     * mouseCase
-     * @param {target} string
-     * @param {props} object
-     * @param {props.cssClass} string
-     * @param {props.rule} boolean
-     */
     var mousecase = function (target, _a) {
         var _b = _a === void 0 ? {} : _a, _c = _b.cssClass, cssClass = _c === void 0 ? 'js-mousecase' : _c, _d = _b.rule, rule = _d === void 0 ? true : _d;
         return ({
             props: {
-                el: !target ? null : document.querySelector(target),
+                el: document.querySelector(target),
                 cssClass: cssClass,
                 rule: rule,
                 activeClass: cssClass + "--is-active",

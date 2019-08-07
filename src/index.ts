@@ -1,24 +1,13 @@
-/**
-import { boolean } from '@storybook/addon-knobs';
- * mouseCase
- * @param {target} string
- * @param {props} object
- * @param {props.cssClass} string
- * @param {props.rule} boolean
- */
-
-type $FIXME = any
+type Proto = any
 
 interface MouseCasePropArguments {
     cssClass?: string | null;
     rule?: boolean | null;
 }
-
-
 interface MouseCaseProps {
     activeClass?: string;
     cssClass?: string | null;
-    el: string | $FIXME;
+    el: Element;
     rule?: boolean | null;
 }
 
@@ -26,10 +15,10 @@ interface MouseCaseState {
     isDown?: boolean;
     startx: number | null;
     scrollLeft: number | null;
-    isOn: boolean; 
+    isOn: boolean;
 }
 
-const mousecase: $FIXME = (
+const mousecase = (
     target: string,
     {
         cssClass = 'js-mousecase',
@@ -37,7 +26,7 @@ const mousecase: $FIXME = (
     }: MouseCasePropArguments = {}
 ) => ({
     props: {
-        el: !target ? null : document.querySelector(target),
+        el: document.querySelector(target),
         cssClass,
         rule,
         activeClass: `${cssClass}--is-active`,
@@ -58,7 +47,7 @@ const mousecase: $FIXME = (
             ) return false
             return true
         },
-        mouseMove (e: $FIXME) {
+        mouseMove (e: MouseEvent) {
             if (!this.state.isDown) return
             e.preventDefault()
             const { el } = this.props
@@ -103,7 +92,7 @@ const mousecase: $FIXME = (
             this.state.isOn = true
             return this
         },
-    } as $FIXME,
+    } as Proto,
 })
 
 export default mousecase
