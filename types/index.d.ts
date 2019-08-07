@@ -1,30 +1,31 @@
-interface MouseCasePropArguments {
+interface MousecasePropArguments {
     cssClass?: string;
     rule?: boolean;
 }
-interface MouseCaseProps {
+interface MousecaseProps {
     activeClass: string;
     cssClass: string;
     el: HTMLElement;
     rule: boolean;
 }
-interface MouseCaseState {
+interface MousecaseState {
     isDown: boolean;
     startx: number;
     scrollLeft: number;
     isOn: boolean;
 }
-interface MouseCaseResult {
-    props: MouseCaseProps;
-    state: MouseCaseState;
-    canUseMouseCase: (target: string, rule: boolean) => boolean;
-    mouseMove: (e: MouseEvent) => any;
-    mouseDown: (e: MouseEvent) => any;
-    mouseNotDown: () => any;
-    manageState: () => any;
+declare type MousecaseThis = any;
+interface MousecaseResult {
+    props: MousecaseProps;
+    state: MousecaseState;
+    canUseMousecase: (target: string, rule: boolean) => boolean;
+    mouseMove: (e: MouseEvent) => MousecaseThis;
+    mouseDown: (e: MouseEvent) => MousecaseThis;
+    mouseNotDown: () => MousecaseThis;
+    manageState: () => MousecaseThis;
     init: () => void;
-    off: () => any;
-    on: () => any;
+    off: () => MousecaseThis;
+    on: () => MousecaseThis;
 }
-declare const mousecase: (target: string, { cssClass, rule, }?: MouseCasePropArguments) => MouseCaseResult;
+declare const mousecase: (target: string, { cssClass, rule, }?: MousecasePropArguments) => MousecaseResult;
 export default mousecase;

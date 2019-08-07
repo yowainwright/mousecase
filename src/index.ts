@@ -1,33 +1,36 @@
-interface MouseCasePropArguments {
+interface MousecasePropArguments {
   cssClass?: string;
   rule?: boolean;
 }
 
-interface MouseCaseProps {
+interface MousecaseProps {
   activeClass: string;
   cssClass: string;
   el: HTMLElement;
   rule: boolean;
 }
 
-interface MouseCaseState {
+interface MousecaseState {
   isDown: boolean;
   startx: number;
   scrollLeft: number;
   isOn: boolean;
 }
 
-interface MouseCaseResult {
-  props: MouseCaseProps
-  state: MouseCaseState
-  canUseMouseCase: (target: string, rule: boolean) => boolean
-  mouseMove: (e: MouseEvent) => any
-  mouseDown: (e: MouseEvent) => any
-  mouseNotDown: () => any
-  manageState: () => any
-  init: () => void
-  off: () =>  any
-  on: () => any
+
+type MousecaseThis = any;
+
+interface MousecaseResult {
+  props: MousecaseProps;
+  state: MousecaseState;
+  canUseMousecase: (target: string, rule: boolean) => boolean;
+  mouseMove: (e: MouseEvent) => MousecaseThis;
+  mouseDown: (e: MouseEvent) => MousecaseThis;
+  mouseNotDown: () => MousecaseThis;
+  manageState: () => MousecaseThis;
+  init: () => void;
+  off: () => MousecaseThis;
+  on: () => MousecaseThis;
 }
 
 const mousecase = (
@@ -35,21 +38,21 @@ const mousecase = (
   {
     cssClass = 'js-mousecase',
     rule = true,
-  }: MouseCasePropArguments = {}
-): MouseCaseResult  => ({
+  }: MousecasePropArguments = {}
+): MousecaseResult  => ({
   props: {
     el: document.querySelector(target),
     cssClass,
     rule,
     activeClass: `${cssClass}--is-active`,
-  } as MouseCaseProps,
+  } as MousecaseProps,
   state: {
     isDown: false,
     startx: 0,
     scrollLeft: 0,
     isOn: false,
-  } as MouseCaseState,
-  canUseMouseCase (target: string, rule: boolean): boolean {
+  } as MousecaseState,
+  canUseMousecase (target: string, rule: boolean): boolean {
     if (
       !target ||
       document.querySelectorAll(target).length > 1 ||
@@ -91,7 +94,7 @@ const mousecase = (
     return this;
   },
   init () {
-    if (!this.canUseMouseCase(target, this.props.rule)) return;
+    if (!this.canUseMousecase(target, this.props.rule)) return;
     this.state.isOn = true;
     this.manageState();
   },

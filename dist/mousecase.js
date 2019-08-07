@@ -26,7 +26,7 @@
               scrollLeft: 0,
               isOn: false,
           },
-          canUseMouseCase: function (target, rule) {
+          canUseMousecase: function (target, rule) {
               if (!target ||
                   document.querySelectorAll(target).length > 1 ||
                   rule === false)
@@ -69,7 +69,7 @@
               return this;
           },
           init: function () {
-              if (!this.canUseMouseCase(target, this.props.rule))
+              if (!this.canUseMousecase(target, this.props.rule))
                   return;
               this.state.isOn = true;
               this.manageState();
