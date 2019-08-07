@@ -2,7 +2,7 @@ import { mouseCaseDom } from '../utils/mock-data';
 
 import mousecase from '..';
 
-type $FIXME = any;
+type SelectedElement = any;
 
 describe('mouseCase init', () => {
   it('initiates basic target', () => {
@@ -22,15 +22,6 @@ describe('mouseCase init', () => {
     expect(test.props.cssClass).toBe('foo-bar');
   });
 
-  it('does not manage state w/o target', () => {
-    document.body.innerHTML = mouseCaseDom;
-    const test = mousecase();
-    test.init();
-    test.manageState = jest.fn();
-    expect(test.state.isOn).toBe(false);
-    expect(test.manageState).not.toHaveBeenCalled();
-  });
-
   it('takes in props', () => {
     document.body.innerHTML = mouseCaseDom;
     const test = mousecase('#mouse-case');
@@ -45,19 +36,11 @@ describe('mouseCase init', () => {
     document.body.innerHTML = mouseCaseDom;
     const test = mousecase('#mouse-case');
     expect(test.state.isDown).toBe(false);
-    expect(test.state.startx).toBe(null);
-    expect(test.state.scrollLeft).toBe(null);
+    expect(test.state.startx).toBe(0);
+    expect(test.state.scrollLeft).toBe(0);
     expect(test.state.isOn).toBe(false);
     test.init();
     expect(test.state.isOn).toBe(true);
-  });
-
-  it('has working canUseMouseCase function', () => {
-    document.body.innerHTML = mouseCaseDom;
-    const test = mousecase();
-    test.init();
-
-    expect(test.props.el).toBe(null);
   });
 
   it('mouseDown', () => {
@@ -66,7 +49,7 @@ describe('mouseCase init', () => {
     test.init();
     test.mouseDown = jest.fn();
     const e = new Event('mousedown');
-    const testEl: $FIXME = document.getElementById('mouse-case');
+    const testEl: SelectedElement = document.getElementById('mouse-case');
     testEl.dispatchEvent(e);
     testEl.addEventListener('mousedown', () => {
       expect(test.state.isDown).toBe(true);
@@ -80,7 +63,7 @@ describe('mouseCase init', () => {
     test.init();
     test.mouseMove = jest.fn();
     const e = new Event('mousedown');
-    const testEl: $FIXME = document.getElementById('mouse-case');
+    const testEl: SelectedElement = document.getElementById('mouse-case');
     testEl.dispatchEvent(e);
     testEl.addEventListener('mousemove', () => {
       expect(test.state.isDown).toBe(true);
@@ -90,9 +73,11 @@ describe('mouseCase init', () => {
 
   it('mouseup', () => {
     document.body.innerHTML = mouseCaseDom;
-    const test = mousecase('#mouse-case').init();
+    const test = mousecase('#mouse-case');
+    test.init();
+    test.mouseMove = jest.fn();
     const e = new Event('mouseup');
-    const testEl: $FIXME = document.getElementById('mouse-case');
+    const testEl: SelectedElement = document.getElementById('mouse-case');
     testEl.dispatchEvent(e);
     testEl.addEventListener('mousemove', () => {
       expect(test.state.isDown).toBe(false);
@@ -105,13 +90,5 @@ describe('mouseCase init', () => {
     test.init();
     test.manageState();
     expect(test.state.isOn).toBe(true);
-  });
-
-  it('manageState should be returned out of', () => {
-    document.body.innerHTML = mouseCaseDom;
-    const test = mousecase();
-    test.init();
-    test.manageState();
-    expect(test.state.isOn).toBe(false);
   });
 });
