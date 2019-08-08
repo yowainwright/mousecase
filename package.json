@@ -6,7 +6,7 @@
   "module": "dist/mousecase.es.js",
   "unpkg": "dist/mousecase.min.js",
   "scripts": {
-    "build": "rollup --config rollup.config.js",
+    "build": "rollup --config rollup.config.ts",
     "eslint": "eslint . --fix --ext .js,.ts",
     "eslint:ci": "eslint . --ext .js,.ts",
     "chore:delete-changelog-branch": "if git show-ref --quiet refs/heads/chore-changelog; then git branch -D chore-changelog; fi",
