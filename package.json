@@ -51,7 +51,7 @@
     "@babel/core": "7.8.4",
     "@babel/plugin-proposal-class-properties": "7.8.3",
     "@babel/preset-env": "7.8.4",
-    "@types/jest": "^24.0.15",
+    "@types/jest": "^25.1.0",
     "@typescript-eslint/eslint-plugin": "^2.0.0",
     "@typescript-eslint/parser": "^2.0.0",
     "babel-core": "7.0.0-bridge.0",
@@ -66,12 +66,12 @@
     "markdownlint-cli": "^0.21.0",
     "prettier": "^1.18.2",
     "puppeteer": "^2.0.0",
-    "rollup": "1.29.1",
+    "rollup": "1.30.0",
     "rollup-plugin-babel": "4.3.3",
     "rollup-plugin-replace": "2.2.0",
     "rollup-plugin-typescript2": "^0.25.2",
     "rollup-plugin-uglify": "6.0.4",
-    "ts-jest": "^24.0.2",
+    "ts-jest": "^25.1.0",
     "typescript": "^3.5.2",
     "write-good": "^1.0.0"
   }
