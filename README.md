@@ -2,7 +2,7 @@
 
 ---
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/yowainwright/mousecase.svg)](https://greenkeeper.io/)
+
 [![CircleCI](https://circleci.com/gh/yowainwright/mousecase.svg?style=svg)](https://circleci.com/gh/yowainwright/mousecase)
 [![codecov](https://codecov.io/gh/yowainwright/generate-clean-number/branch/master/graph/badge.svg)](https://codecov.io/gh/yowainwright/mousecase)
 
