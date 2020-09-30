@@ -39,10 +39,11 @@ scrollableEl.init()
 
 #### Arguments
 
-**`target`:** an `string` or `node` that is selected to use mousecase; is required<br>
-- **ex:** `const someMouseCaseInstance = mousecase('some-target')`<br>
-**`props`:** `{object}` containing plugin config<br>
-- **ex:** `someMouseCaseInstance = mousecase('some-target', { cssClass: 'mousecase-fun' })`<br>
+**`target`:** an `string` or `node` that is selected to use mousecase; is required
+- **ex:** `const someMouseCaseInstance = mousecase('some-target')`
+
+**`props`:** `{object}` containing plugin config
+- **ex:** `someMouseCaseInstance = mousecase('some-target', { cssClass: 'mousecase-fun' })`
   - **`activeClass`:** the css class added to the mousecase target element when mousecase is active
   - **`cssClass`:** the css class added to the mousecase target element
   - **`el`:** the formatted target element
