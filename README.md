@@ -28,10 +28,7 @@ Use it!
 ```typescript
 import mousecase from 'mousecase'
 
-const scrollableEl = mousecase('some-selector')
-scrollableEl.init()
-
-// now `some-selector` is horizontally scrollable!
+mousecase('some-selector').init()
 ```
 
 ---
@@ -40,29 +37,21 @@ scrollableEl.init()
 
 #### Arguments
 
-**target:** an `string` or `node` that is selected to use mousecase; is required
-**props:** `{object}` containing plugin config
-- **`activeClass`:** the css class added to the mousecase target element when mousecase is active
-- **`cssClass`:** a css class added to the mousecase target element
-- **`el`:** the formatted target element
-- **`rule`:** a boolean rule that defines whether mousecase should run (or not)
-- all **`props`** are added as defaults if not provided during setup
-
-**example*
-```typescript
-cost scrollableEl = mousecase('el', { cssClass: 'mousecase-el' });
-```
+- **target:** an `string` or `node` that is selected to use mousecase; is required
+- **props:** `{object}` containing plugin config
+  - **`activeClass`:** the css class added to the mousecase target element when mousecase is active
+  - **`cssClass`:** a css class added to the mousecase target element
+  - **`el`:** the formatted target element
+  - **`rule`:** a boolean rule that defines whether mousecase should run (or not)
+- all **props** are added as defaults if not provided during setup
+- **example** `mousecase('el', { cssClass: 'mousecase-el' }).init()`
 
 #### Methods
 
 - **`init()`** initiates mousecase (setup).
 - **`on()`** turns mousecase back on (after initiation)
 - **`off()`** turns mousecase off (after initiation)
-
-**example*
-```typescript
-mousecase('el').init();
-```
+- **example** `mousecase('el').init()`
 
 ---
 
