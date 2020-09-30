@@ -11,7 +11,7 @@
 # Mousecase
 
 Mousecase is a JavaScript utility supporting touch-like horizontal scrolling with a mouse!
-It is a no-nonsense, 0 dependency JavaScript plugin that solves 1 use case:
+It is a no-nonsense, 0 dependency JavaScript plugin that solves 1 use case...
 
 **Scrolling a horizontal section of a webpage with a mouse _without_ using a scrollbar.**
 
@@ -28,14 +28,14 @@ Use it!
 ```typescript
 import mousecase from 'mousecase'
 
-mousecase('some-selector').init()
+mousecase('some-selector').init() // 🎩
 ```
 
 ---
 
 ## MouseCase's API
 
-#### Arguments
+### Arguments
 
 - **target:** an `string` or `node` that is selected to use mousecase; is required
 - **props:** `{object}` containing plugin config
@@ -46,7 +46,7 @@ mousecase('some-selector').init()
 - all **props** are added as defaults if not provided during setup
 - **example** `mousecase('el', { cssClass: 'mousecase-el' }).init()`
 
-#### Methods
+### Methods
 
 - **`init()`** initiates mousecase (setup).
 - **`on()`** turns mousecase back on (after initiation)
