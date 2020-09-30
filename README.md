@@ -40,23 +40,25 @@ scrollableEl.init()
 
 #### Arguments
 
-**`target`:** an `string` or `node` that is selected to use mousecase; is required
+**target:** an `string` or `node` that is selected to use mousecase; is required
 - **ex:** `const scrollableEl = mousecase('some-target')`
 
-**`props`:** `{object}` containing plugin config
+**props:** `{object}` containing plugin config
 - **ex:** `scrollableEl = mousecase('some-target', { cssClass: 'mousecase-fun' })`
-  - **`activeClass`:** the css class added to the mousecase target element when mousecase is active
-  - **`cssClass`:** the css class added to the mousecase target element
-  - **`el`:** the formatted target element
-  - **`rule`:** a boolean rule that defines whether mousecase should run (or not)
+- **`activeClass`:** the css class added to the mousecase target element when mousecase is active
+- **`cssClass`:** the css class added to the mousecase target element
+- **`el`:** the formatted target element
+- **`rule`:** a boolean rule that defines whether mousecase should run (or not)
 - all **`props`** are added as defaults if not provided during setup
 
 #### Methods
 
 **`init()`** initiates mousecase (setup).
 - **ex:** `scrollableEl.init()`
+
 **`on()`** turns mousecase back on (after initiation)
 - **ex:** `scrollableEl.on()`
+
 **`off()`** turns mousecase off (after initiation)
 - **ex:** `scrollableEl.off()`
 
