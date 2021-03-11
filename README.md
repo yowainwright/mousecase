@@ -1,6 +1,6 @@
 ![MouseCase](https://yowainwright.imgix.net/mousecase/mousecase.jpg?auto=format)
 
-# Mousecase 🖱💼
+# Mousecase 🖱
 
 ![Typed with TypeScript](https://flat.badgen.net/badge/icon/Typed?icon=typescript&label&labelColor=blue&color=555555)
 [![npm version](https://badge.fury.io/js/mousecase.svg)](https://badge.fury.io/js/mousecase)
@@ -50,7 +50,7 @@ MouseCase itself is a factory that takes in 2 arguments.
 **`target`** an `string` or `node` that is selected to use mousecase; is required
 > **ex:** `mouseCase('some-target')`
 
-**`props`:** `{object}` containing plugin config
+**`options`:** `{object}` containing plugin config
 > **ex:** `mouseCase('some-target', { cssClass: 'mousecase-fun' })`
 
 - **`activeClass`** the css class added to the mousecase target element when mousecase is active
