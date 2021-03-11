@@ -1,6 +1,6 @@
 ![MouseCase](https://yowainwright.imgix.net/mousecase/mousecase.jpg?auto=format)
 
-# Mousecase 🖱💼
+# Mousecase 🖱
 
 ![Typed with TypeScript](https://flat.badgen.net/badge/icon/Typed?icon=typescript&label&labelColor=blue&color=555555)
 [![npm version](https://badge.fury.io/js/mousecase.svg)](https://badge.fury.io/js/mousecase)
