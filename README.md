@@ -2,9 +2,8 @@
 
 # Mousecase 🖱💼
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/yowainwright/mousecase.svg)](https://greenkeeper.io/)
-[![CircleCI](https://circleci.com/gh/yowainwright/mousecase.svg?style=svg)](https://circleci.com/gh/yowainwright/mousecase)
-[![codecov](https://codecov.io/gh/yowainwright/generate-clean-number/branch/master/graph/badge.svg)](https://codecov.io/gh/yowainwright/mousecase)
+![Typed with TypeScript](https://flat.badgen.net/badge/icon/Typed?icon=typescript&label&labelColor=blue&color=555555)
+[![npm version](https://badge.fury.io/js/mousecase.svg)](https://badge.fury.io/js/mousecase)
 
 Mousecase is a JavaScript utility supporting touch-like horizontal scrolling with a mouse!
 It is a no-nonsense, 0 dependency JavaScript plugin that solves 1 use case:
