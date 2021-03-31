@@ -48,7 +48,7 @@
   },
   "homepage": "https://github.com/yowainwright/mousecase#readme",
   "devDependencies": {
-    "@babel/core": "7.12.10",
+    "@babel/core": "7.13.14",
     "@babel/plugin-proposal-class-properties": "7.13.0",
     "@babel/preset-env": "7.12.16",
     "@types/jest": "^26.0.14",
