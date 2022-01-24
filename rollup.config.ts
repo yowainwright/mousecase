@@ -1,38 +1,8 @@
-import babel from 'rollup-plugin-babel';
-import typescript from 'rollup-plugin-typescript2';
-import { uglify } from 'rollup-plugin-uglify';
-import {
-  author,
-  description,
-  homepage,
-  license,
-  main,
-  module,
-  name,
-  version,
-} from './package.json';
-
-const uglifyOutput = {
-  output: {
-    comments: function comments (node, comment) {
-      const text = comment.value;
-      const type = comment.type;
-      if (type === 'comment2') {
-        // multiline comment
-        return /@preserve|@license|@cc_on/i.test(text);
-      }
-    },
-  },
-};
-
-// babel config
-const loose = true;
-
-const babelSetup = {
-  babelrc: false,
-  presets: [['@babel/preset-env', { modules: false, loose }]],
-  plugins: [['@babel/plugin-proposal-class-properties', { loose }]],
-};
+import { author, description, homepage, license, name, version } from './package.json'
+import resolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
+import typescript from '@rollup/plugin-typescript'
+import { uglify } from 'rollup-plugin-uglify'
 
 const banner = `/**
   ${name} - ${description}
@@ -40,42 +10,31 @@ const banner = `/**
   @link ${homepage}
   @author ${author}
   @license ${license}
-**/`;
+**/`
 
-const ensureArray = maybeArr =>
-  Array.isArray(maybeArr) ? maybeArr : [maybeArr];
+const plugins = [
+  resolve(),
+  commonjs(),
+  typescript({ tsconfig: false, lib: ['esnext', 'dom', 'dom.iterable'], target: 'es5' }),
+]
 
-const createConfig = ({ input, output, env } = {}) => {
-  const plugins = [
-    typescript({ useTsconfigDeclarationDir: true }),
-    babel(babelSetup),
-  ];
+const inputs = ['reframe', 'noframe', 'jquery.reframe', 'jquery.noframe']
+const esRollups = inputs.map((name) => ({
+  input: `src/${name}.ts`,
+  output: { banner, name, file: `dist/${name}.es.js`, format: 'es' },
+  plugins,
+}))
 
-  if (env === 'production') plugins.push(uglify(uglifyOutput));
+const umdRollups = inputs.map((name) => ({
+  input: `src/${name}.ts`,
+  output: { banner, name, file: `dist/${name}.js`, format: 'umd' },
+  plugins,
+}))
 
-  return {
-    input,
-    plugins,
-    output: ensureArray(output).map(format =>
-      Object.assign({}, format, {
-        banner,
-        name: 'mousecase',
-      })
-    ),
-  };
-};
+const minRollups = inputs.map((name) => ({
+  input: `src/${name}.ts`,
+  output: { banner, name, file: `dist/${name}.min.js`, format: 'umd' },
+  plugins: [...plugins, uglify()],
+}))
 
-export default [
-  createConfig({
-    input: 'src/index.ts',
-    output: [{ file: main, format: 'umd' }, { file: module, format: 'es' }],
-  }),
-  createConfig({
-    input: 'src/index.ts',
-    output: {
-      file: 'dist/mousecase.min.js',
-      format: 'umd',
-    },
-    env: 'production',
-  }),
-];
+export default [...esRollups, ...umdRollups, ...minRollups]
