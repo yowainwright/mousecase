@@ -35,7 +35,7 @@
             },
             mouseMove: function (e) {
                 if (!this.state.isDown)
-                    return;
+                    return this;
                 e.preventDefault();
                 var el = this.props.el;
                 var initial = e.pageX - el.offsetLeft;
@@ -60,7 +60,7 @@
             manageState: function () {
                 var _this = this;
                 if (!this.state.isOn)
-                    return;
+                    return this;
                 var el = this.props.el;
                 el.addEventListener('mousemove', function (e) { return _this.mouseMove(e); });
                 el.addEventListener('mousedown', function (e) { return _this.mouseDown(e); });
