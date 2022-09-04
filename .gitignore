@@ -11,3 +11,4 @@ coverage.lcov
 coverage_*/
 .rpt2_cache/
 .dccache
+dist
