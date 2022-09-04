@@ -29,7 +29,7 @@ const plugins = [
   }),
 ];
 
-const inputs = ['reframe', 'noframe', 'jquery.reframe', 'jquery.noframe'];
+const inputs = ['mousecase', 'jquery.mousecase'];
 const esRollups = inputs.map((name) => ({
   input: `src/index.ts`,
   output: { banner, name, file: `dist/${name}.es.js`, format: 'es' },
