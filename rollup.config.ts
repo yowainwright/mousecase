@@ -26,6 +26,7 @@ const plugins = [
     tsconfig: false,
     lib: ['esnext', 'dom', 'dom.iterable'],
     target: 'es5',
+    resolveJsonModule: true,
   }),
 ];
 
