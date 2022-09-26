@@ -1,3 +1,4 @@
+import { describe, it, expect, vi } from 'vitest';
 import { mouseCaseDom } from '../utils/mock-data';
 
 import mousecase from '..';
@@ -45,7 +46,7 @@ describe('mouseCase init', () => {
     document.body.innerHTML = mouseCaseDom;
     const test = mousecase('#mouse-case');
     test.init();
-    test.mouseDown = jest.fn();
+    test.mouseDown = vi.fn();
     const e = new Event('mousedown');
     const testEl = document.getElementById('mouse-case') as HTMLElement;
     testEl.dispatchEvent(e);
@@ -59,7 +60,7 @@ describe('mouseCase init', () => {
     document.body.innerHTML = mouseCaseDom;
     const test = mousecase('#mouse-case');
     test.init();
-    test.mouseMove = jest.fn();
+    test.mouseMove = vi.fn();
     const e = new Event('mousedown');
     const testEl = document.getElementById('mouse-case') as HTMLElement;
     testEl.dispatchEvent(e);
@@ -73,7 +74,7 @@ describe('mouseCase init', () => {
     document.body.innerHTML = mouseCaseDom;
     const test = mousecase('#mouse-case');
     test.init();
-    test.mouseMove = jest.fn();
+    test.mouseMove = vi.fn();
     const e = new Event('mouseup');
     const testEl = document.getElementById('mouse-case') as HTMLElement;
     testEl.dispatchEvent(e);
