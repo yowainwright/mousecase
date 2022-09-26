@@ -1,6 +1,6 @@
 /**
   mousecase - Mousecase is a JavaScript utility supporting touch-like horizontal scrolling with a mouse!
-  @version v3.0.0-beta.1
+  @version v3.0.0
   @link https://github.com/yowainwright/mousecase#readme
   @author Jeff Wainwright <yowainwright@gmail.com> (https://jeffry.in)
   @license MIT
