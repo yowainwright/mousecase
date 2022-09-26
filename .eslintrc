@@ -1,35 +1,10 @@
 {
-  "parser":  "@typescript-eslint/parser",
-  "extends": [
-    "plugin:@typescript-eslint/recommended",
-  ],
-  "parserOptions":  {
-    "ecmaVersion":  2018,
-    "sourceType":  "module",
-  },
-  "globals": {
-    "afterAll": true,
-    "beforeAll": true,
-    "browser": true,
-    "describe": true,
-    "document": true,
-    "expect": true,
-    "it": true,
-    "jest": true,
-    "test": true,
-    "window": true,
-    "Event": true,
-    "HTMLElement": true
-  },
-  "rules": {
-    "no-console": "off",
-    "trailingComma":  0,
-    "semi": "off",
-    "indent": "off",
-    "@typescript-eslint/no-angle-bracket-type-assertion": 0,
-    "@typescript-eslint/no-object-literal-type-assertion": 0,
-    "@typescript-eslint/explicit-function-return-type": 0,
-    "@typescript-eslint/semi": ["error"],
-    "@typescript-eslint/indent": ["error", 2]
-  }
+	"root": true,
+	"parser": "@typescript-eslint/parser",
+	"plugins": ["@typescript-eslint"],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"prettier"
+	]
 }
