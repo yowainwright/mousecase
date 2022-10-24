@@ -10,7 +10,7 @@ specifiers:
   conventional-changelog-cli: ^2.2.2
   eslint: ^8.26.0
   eslint-config-prettier: ^8.5.0
-  happy-dom: ^6.0.4
+  happy-dom: ^7.6.0
   husky: ^8.0.1
   prettier: ^2.7.1
   rollup: ^2.79.1
@@ -31,7 +31,7 @@ devDependencies:
   conventional-changelog-cli: 2.2.2
   eslint: 8.26.0
   eslint-config-prettier: 8.5.0_eslint@8.26.0
-  happy-dom: 6.0.4
+  happy-dom: 7.6.0
   husky: 8.0.1
   prettier: 2.7.1
   rollup: 2.79.1
@@ -40,7 +40,7 @@ devDependencies:
   tsutils: 3.21.0_typescript@4.8.4
   typescript: 4.8.4
   vite: 3.1.8
-  vitest: 0.24.3_happy-dom@6.0.4
+  vitest: 0.24.3_happy-dom@7.6.0
 
 packages:
 
@@ -225,7 +225,7 @@ packages:
   /@types/concat-stream/1.6.1:
     resolution: {integrity: sha512-eHE4cQPoj6ngxBZMvVf6Hw7Mh4jMW4U9lpGmS5GBPB9RYxlFg+CHaVN7ErNY4W9XfLIEn20b4VDYaIrbq0q4uA==}
     dependencies:
-      '@types/node': 8.10.66
+      '@types/node': 18.11.4
     dev: true
 
   /@types/estree/0.0.39:
@@ -239,7 +239,7 @@ packages:
   /@types/form-data/0.0.33:
     resolution: {integrity: sha512-8BSvG1kGm83cyJITQMZSulnl6QV8jqAGreJsc5tPu1Jq0vTSOiY/k24Wx82JRpWwZSqrala6sd5rWi6aNXvqcw==}
     dependencies:
-      '@types/node': 8.10.66
+      '@types/node': 18.11.4
     dev: true
 
   /@types/json-schema/7.0.11:
@@ -1553,8 +1553,8 @@ packages:
       uglify-js: 3.17.4
     dev: true
 
-  /happy-dom/6.0.4:
-    resolution: {integrity: sha512-b+ID23Ms0BY08UNLymsOMG7EI2jSlwEt4cbJs938GZfeNAg+fqgkSO3TokQMgSOFoHznpjWmpVjBUL5boJ9PWw==}
+  /happy-dom/7.6.0:
+    resolution: {integrity: sha512-QnNsiblZdyVDzW5ts6E7ub79JnabqHJeJgt+1WGNq9fSYqS/r/RzzTVXCZSDl6EVkipdwI48B4bgXAnMZPecIw==}
     dependencies:
       css.escape: 1.5.1
       he: 1.2.0
@@ -2855,7 +2855,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.24.3_happy-dom@6.0.4:
+  /vitest/0.24.3_happy-dom@7.6.0:
     resolution: {integrity: sha512-aM0auuPPgMSstWvr851hB74g/LKaKBzSxcG3da7ejfZbx08Y21JpZmbmDYrMTCGhVZKqTGwzcnLMwyfz2WzkhQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -2882,7 +2882,7 @@ packages:
       '@types/node': 18.11.4
       chai: 4.3.6
       debug: 4.3.4
-      happy-dom: 6.0.4
+      happy-dom: 7.6.0
       local-pkg: 0.4.2
       strip-literal: 0.4.2
       tinybench: 2.3.1
