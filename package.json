@@ -29,7 +29,7 @@
     "conventional-changelog-cli": "^3.0.0",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
-    "happy-dom": "^7.6.0",
+    "happy-dom": "^10.0.5",
     "husky": "^8.0.1",
     "prettier": "^2.7.1",
     "rollup": "^2.79.1",
