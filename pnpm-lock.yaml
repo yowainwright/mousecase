@@ -31,7 +31,7 @@ devDependencies:
     version: 8.26.0
   eslint-config-prettier:
     specifier: ^8.5.0
-    version: 8.5.0(eslint@8.26.0)
+    version: 8.8.0(eslint@8.26.0)
   happy-dom:
     specifier: ^10.3.2
     version: 10.3.2
@@ -1224,8 +1224,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-config-prettier@8.5.0(eslint@8.26.0):
-    resolution: {integrity: sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==}
+  /eslint-config-prettier@8.8.0(eslint@8.26.0):
+    resolution: {integrity: sha512-wLbQiFre3tdGgpDv67NQKnJuTlcUVYHas3k+DZCc2U2BadthoEY4B7hLPvAxaqdyOGCzuLfii2fqGph10va7oA==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
