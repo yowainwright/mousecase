@@ -32,7 +32,7 @@
     "happy-dom": "^10.3.2",
     "husky": "^8.0.1",
     "prettier": "^2.7.1",
-    "rollup": "^2.79.1",
+    "rollup": "^3.26.3",
     "rollup-plugin-uglify": "6.0.4",
     "tslib": "^2.4.0",
     "tsutils": "^3.21.0",
