@@ -13,7 +13,7 @@ devDependencies:
     version: 15.1.0(rollup@3.26.3)
   '@rollup/plugin-typescript':
     specifier: ^11.0.0
-    version: 11.1.1(rollup@3.26.3)(tslib@2.6.0)(typescript@4.8.4)
+    version: 11.1.1(rollup@3.26.3)(tslib@2.6.1)(typescript@4.8.4)
   '@typescript-eslint/eslint-plugin':
     specifier: ^5.40.1
     version: 5.40.1(@typescript-eslint/parser@5.61.0)(eslint@8.26.0)(typescript@4.8.4)
@@ -49,7 +49,7 @@ devDependencies:
     version: 6.0.4(rollup@3.26.3)
   tslib:
     specifier: ^2.4.0
-    version: 2.6.0
+    version: 2.6.1
   tsutils:
     specifier: ^3.21.0
     version: 3.21.0(typescript@4.8.4)
@@ -394,7 +394,7 @@ packages:
       rollup: 3.26.3
     dev: true
 
-  /@rollup/plugin-typescript@11.1.1(rollup@3.26.3)(tslib@2.6.0)(typescript@4.8.4):
+  /@rollup/plugin-typescript@11.1.1(rollup@3.26.3)(tslib@2.6.1)(typescript@4.8.4):
     resolution: {integrity: sha512-Ioir+x5Bejv72Lx2Zbz3/qGg7tvGbxQZALCLoJaGrkNXak/19+vKgKYJYM3i/fJxvsb23I9FuFQ8CUBEfsmBRg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -410,7 +410,7 @@ packages:
       '@rollup/pluginutils': 5.0.2(rollup@3.26.3)
       resolve: 1.22.1
       rollup: 3.26.3
-      tslib: 2.6.0
+      tslib: 2.6.1
       typescript: 4.8.4
     dev: true
 
@@ -2722,8 +2722,8 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
-  /tslib@2.6.0:
-    resolution: {integrity: sha512-7At1WUettjcSRHXCyYtTselblcHl9PJFFVKiCAy/bY97+BPZXSQ2wbq0P9s8tK2G7dFQfNnlJnPAiArVBVBsfA==}
+  /tslib@2.6.1:
+    resolution: {integrity: sha512-t0hLfiEKfMUoqhG+U1oid7Pva4bbDPHYfJNiB7BiIjRkj1pyC++4N3huJfqY6aRH6VTB0rvtzQwjM4K6qpfOig==}
     dev: true
 
   /tsutils@3.21.0(typescript@4.8.4):
